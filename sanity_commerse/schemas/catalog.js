@@ -1,13 +1,12 @@
 export default {
-    name: 'product',
-    title: 'Product',
+    name: 'catalog',
+    title: 'Catalog',
     type: 'document',
     fields: [
         {
             name: 'image',
             title: 'Image',
-            type: 'array',
-            of: [{ type: 'image' }],
+            type: 'image',
             options: {
                 hotspot: true,
             }
@@ -26,20 +25,5 @@ export default {
                 maxLength: 90,
             }
         },
-        {
-            name: 'price',
-            title: 'Price',
-            type: 'number',
-        },
-        {
-            name: 'details',
-            title: 'Details',
-            type: 'string',
-        }, {
-            name: 'catalog',
-            title: 'Catalog',
-            type: 'reference',
-            to: [{ type: 'catalog' }]
-        }
     ]
 }
