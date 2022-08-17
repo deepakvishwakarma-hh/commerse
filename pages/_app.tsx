@@ -3,7 +3,11 @@ import type { AppProps } from 'next/app'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 // TRANSFER
-const theme = extendTheme({})
+const theme = extendTheme({
+  fonts: {
+    body: `'Nunito', sans-serif`
+  }
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
