@@ -5,7 +5,7 @@ interface props {
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import { client } from "../../../src/lib/client"
-import { CatalogNotFound, Products } from "../../../src/components/elements"
+import { NotFound, Products } from "../../../src/components/elements"
 import { HomeLayout as Layout } from "../../../src/components/layouts";
 
 
@@ -17,7 +17,7 @@ const Catalog = ({ products, catalog }: props) => {
     if (catalog.length == 0) {
         return (
             <Layout>
-                <CatalogNotFound catalog={catalogId} />
+                <NotFound title={'Catalog is Not Found'} discription={' invalid slug'} />
             </Layout>
         )
     }

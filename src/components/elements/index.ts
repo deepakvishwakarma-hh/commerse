@@ -1,16 +1,6 @@
-export { default as Navigation } from "./Navigation"
-export { default as Products } from "./Products"
-export { default as Footer } from "./Footer"
 export { default as Menu } from "./Menu"
+export { default as Footer } from "./Footer"
+export { default as Products } from "./Products"
 export { default as Catalogs } from "./Catalogs"
-export { default as CatalogNotFound } from "./CatalogNotFound"
-
-
-
-
-
-
-
-
-//templates
-// export { default as _ } from "./_"
+export { default as NotFound } from "./NotFound"
+export { default as Navigation } from "./Navigation"
