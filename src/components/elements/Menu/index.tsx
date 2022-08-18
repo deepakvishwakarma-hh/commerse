@@ -21,13 +21,11 @@ import Image from 'next/image'
 
 const Menu = ({ isOpen, onClose, btnRef }: any) => {
     return (
-
         <Drawer
             isOpen={isOpen}
             placement='left'
             onClose={onClose}
-            finalFocusRef={btnRef as any}
-        >
+            finalFocusRef={btnRef as any}>
             <DrawerOverlay />
             <DrawerContent>
                 <DrawerCloseButton marginRight={5} />

@@ -5,17 +5,16 @@ import { Navigation, Footer, Menu } from "../elements"
 
 interface props {
     children: ReactComponentElement<any, any>,
-    catalog: any[]
 }
 
-const HomeLayout = ({ children, catalog }: props) => {
+const HomeLayout = ({ children }: props) => {
     const btnRef = useRef()
     const { isOpen, onOpen, onClose } = Chakra.useDisclosure()
     return (
         <>
             <Navigation {...{ onOpen, btnRef }} />
-            <Menu  {...{ isOpen, onClose, btnRef }} />
-            <Chakra.Box mt={'50px'}>
+            <Menu   {...{ isOpen, onClose, btnRef }} />
+            <Chakra.Box mt={'70px'}>
                 {children}
             </Chakra.Box>
             <Footer />

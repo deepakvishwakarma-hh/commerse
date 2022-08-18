@@ -1,39 +1,23 @@
 interface props {
   products: any,
-  catalog: any
+  catalog: any[]
 }
-
-
 import { client } from "../src/lib/client"
+import { Catalogs } from "../src/components/elements"
 import { HomeLayout } from "../src/components/layouts"
 
-const Home = ({ products, catalog }: props) => {
-
-  console.log(catalog)
-
+const Home = ({ catalog }: props) => {
   return (
-    <HomeLayout catalog={catalog}>
-      <div>
-
-
-
-
-      </div>
+    <HomeLayout >
+      <Catalogs catalog={catalog} />
     </HomeLayout>
   )
 }
 
-export default Home
 
 export const getServerSideProps = async () => {
-  const queryProducts = '*[_type == "product"]';
-  const products = await client.fetch(queryProducts);
-
   const queryCatalog = '*[_type == "catalog"]';
   const catalog = await client.fetch(queryCatalog);
-
-  return {
-    props: { products, catalog }
-  }
-
+  return { props: { catalog } }
 }
+export default Home

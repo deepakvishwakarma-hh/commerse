@@ -1,39 +1,42 @@
-import { Flex, Text, Box } from "@chakra-ui/react"
+import { Flex, Text, Box, Image } from "@chakra-ui/react"
 import {
     AccordionItem,
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
 } from '@chakra-ui/react'
-
-const FakeData = [{ name: 'shoes', image: "" }, { name: 'watch', image: "" }, { name: 'sharee', image: "" }, { name: 'shirt', image: "" }, { name: 'bags', image: "" }, { name: 'pants', image: "" }, { name: 'shoes', image: "" }, { name: 'shoes', image: "" },]
-
-import Image from "next/image"
+import { useEffect, useState } from "react"
 
 
-import Item from "./_item"
+import { urlFor } from "../../../lib/client"
 
+import { client } from "../../../lib/client"
 
 const CollectionAccordionItem = () => {
 
+    const [catalog, setCatalog] = useState([])
 
+    useEffect(() => {
+        const fetchCatalogs = async () => {
+            const queryCatalog = '*[_type == "catalog"]';
+            const catalog = await client.fetch(queryCatalog);
+            setCatalog(catalog)
+        }
+
+        fetchCatalogs()
+
+    }, [])
 
 
     return (
         <AccordionItem border="none">
             <h2>
                 <AccordionButton>
-                    {/* <Box fontWeight={500} flex='500' textAlign='left'>
-                        Collection
-                    </Box> */}
-
 
                     <Flex fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
 
-                        {/* <Box bg="lightgray" w={'50px'} h={'50px'}>
-                        </Box> */}
 
-                        <Image src="/grid.svg" alt="none" width={'20px'} height="20px" />
+                        <Image src="/grid.svg" alt="" width={'20px'} height="20px" />
 
 
                         <Text pl={5}>
@@ -45,8 +48,11 @@ const CollectionAccordionItem = () => {
             </h2>
             <AccordionPanel pb={4} ml={4} borderLeft="2px lightgray solid">
 
-                {FakeData.map((value: any, index: number) => {
-                    return <Item key={index} {...value} />
+                {catalog.map((data: any, index: number) => {
+                    return <Flex alignItems={'center'} my={2} key={index}>
+                        <Image w="50px" h="50px" src={urlFor(data.image) as any} alt="" />
+                        <Text fontSize={13} fontWeight={500} color="gray" textTransform={'capitalize'} px={2}>{data.name}</Text>
+                    </Flex>
                 })}
 
 
