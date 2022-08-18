@@ -1,9 +1,8 @@
 import {
     Flex,
-    Button, Text, Center, Input
+    Button, Text, Center, Input, Heading
 } from '@chakra-ui/react'
 
-import Image from 'next/image'
 import Router from 'next/router'
 
 const Header = ({ onOpen, btnRef }: any) => {
@@ -25,7 +24,8 @@ const Header = ({ onOpen, btnRef }: any) => {
                     </Button>
                 </Flex>
                 <Center flex={2} >
-                    <Image onClick={onLogoClickHandler} src="/vercel.svg" width={100} height={50} alt="hey" />
+
+                    <Heading onClick={onLogoClickHandler} fontSize={20}>MPCart</Heading>
                 </Center>
                 <Flex flex={1} justifyContent='end'>
                     <Button mx={2} variant={'unstyled'} onClick={onWhatClickHandler}>
