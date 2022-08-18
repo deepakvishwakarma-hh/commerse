@@ -6,7 +6,7 @@ import {
     AccordionIcon,
 } from '@chakra-ui/react'
 import { useEffect, useState } from "react"
-
+import Router from 'next/router'
 
 import { urlFor } from "../../../lib/client"
 
@@ -34,11 +34,7 @@ const CollectionAccordionItem = () => {
                 <AccordionButton>
 
                     <Flex fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
-
-
                         <Image src="/grid.svg" alt="" width={'20px'} height="20px" />
-
-
                         <Text pl={5}>
                             Collection
                         </Text>
@@ -49,13 +45,11 @@ const CollectionAccordionItem = () => {
             <AccordionPanel pb={4} ml={4} borderLeft="2px lightgray solid">
 
                 {catalog.map((data: any, index: number) => {
-                    return <Flex alignItems={'center'} my={2} key={index}>
+                    return <Flex cursor={'pointer'} alignItems={'center'} my={2} key={index} onClick={() => { Router.push(`/catalog/${data.slug.current}`) }}>
                         <Image w="50px" h="50px" src={urlFor(data.image) as any} alt="" />
                         <Text fontSize={13} fontWeight={500} color="gray" textTransform={'capitalize'} px={2}>{data.name}</Text>
                     </Flex>
                 })}
-
-
             </AccordionPanel>
         </AccordionItem>
     )
