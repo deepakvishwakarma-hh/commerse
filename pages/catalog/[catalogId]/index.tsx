@@ -4,10 +4,9 @@ interface props {
 }
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
-import * as Chakra from "@chakra-ui/react"
-import { client } from "../../src/lib/client"
-import { CatalogNotFound, Products } from "../../src/components/elements"
-import { HomeLayout as Layout } from "../../src/components/layouts";
+import { client } from "../../../src/lib/client"
+import { CatalogNotFound, Products } from "../../../src/components/elements"
+import { HomeLayout as Layout } from "../../../src/components/layouts";
 
 
 const Catalog = ({ products, catalog }: props) => {
