@@ -1,4 +1,4 @@
-import { Flex, Text, Box, Image } from "@chakra-ui/react"
+import { Flex, Text, Box, Image, Spinner, Center } from "@chakra-ui/react"
 import {
     AccordionItem,
     AccordionButton,
@@ -43,6 +43,12 @@ const CollectionAccordionItem = () => {
                 </AccordionButton>
             </h2>
             <AccordionPanel pb={4} ml={4} borderLeft="2px lightgray solid">
+
+                {catalog.length == 0 &&
+                    <Center h="100px">
+                        <Spinner />
+                    </Center>
+                }
 
                 {catalog.map((data: any, index: number) => {
                     return <Flex cursor={'pointer'} alignItems={'center'} my={2} key={index} onClick={() => { Router.push(`/catalog/${data.slug.current}`) }}>
