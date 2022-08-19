@@ -1,31 +1,12 @@
-
-import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-    Accordion,
-    Button, Box, Text, Flex, Image
-} from '@chakra-ui/react'
-
-
-import CollectionAccordionItem from "./collection"
-import AccountAccordionItem from "./account"
-import InfoAccordionItem from './info'
 import Link from 'next/link'
-// import Image from 'next/image'
-
+import InfoAccordionItem from './info'
+import AccountAccordionItem from "./account"
+import CollectionAccordionItem from "./collection"
+import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Accordion, Button, Box, Text, Flex, Image } from '@chakra-ui/react'
 
 const Menu = ({ isOpen, onClose, btnRef }: any) => {
     return (
-        <Drawer
-            isOpen={isOpen}
-            placement='left'
-            onClose={onClose}
-            finalFocusRef={btnRef as any}>
+        <Drawer isOpen={isOpen} placement='left' onClose={onClose} finalFocusRef={btnRef as any}>
             <DrawerOverlay />
             <DrawerContent>
                 <DrawerCloseButton marginRight={5} />
@@ -56,19 +37,18 @@ const Menu = ({ isOpen, onClose, btnRef }: any) => {
                             </Flex>
                         </Link>
 
-                        <Flex _hover={{ bg: 'blackAlpha.50' }} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
-
-                            <Image src="/contact.svg" alt="none" width={'20px'} height="20px" />
-
-                            <Text pl={5}>
-                                Contact
-                            </Text>
-                        </Flex>
+                        <Link href="/conatct" passHref>
+                            <Flex _hover={{ bg: 'blackAlpha.50' }} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
+                                <Image src="/contact.svg" alt="none" width={'20px'} height="20px" />
+                                <Text pl={5}>
+                                    Contact
+                                </Text>
+                            </Flex>
+                        </Link>
 
                         <Text mt={5} color={'gray.500'} fontSize={13} padding={'8px 16px'} >
                             RKC <br />
                             © All Right Reserved</Text>
-
                     </Accordion>
 
                 </DrawerBody>

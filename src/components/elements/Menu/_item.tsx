@@ -1,14 +1,12 @@
 
-import { urlFor } from "../../../lib/client"
-import { Flex, Box, Text, Image } from "@chakra-ui/react"
-
+import * as Chakra from "@chakra-ui/react"
 
 const Item = (data: any) => {
     return (
-        <Flex alignItems={'center'} my={2}>
-            {/* <Image alt="lightgray" src={urlFor(image) as any} w={'50px'} h={'50px'} /> */}
-            <Text fontSize={13} fontWeight={500} color="gray" textTransform={'capitalize'} px={2}>{data.name}</Text>
-        </Flex>
+        <Chakra.Flex alignItems={'center'} my={2}>
+            <Chakra.Text fontSize={13} fontWeight={500} color="gray" textTransform={'capitalize'} px={2}>{data.name}</Chakra.Text>
+        </Chakra.Flex>
     )
 }
+
 export default Item
