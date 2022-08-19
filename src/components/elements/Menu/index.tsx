@@ -37,7 +37,7 @@ const Menu = ({ isOpen, onClose, btnRef }: any) => {
                         <InfoAccordionItem />
 
                         <Link href="/cart" passHref>
-                            <Flex cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
+                            <Flex _hover={{ bg: 'blackAlpha.50' }} cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
                                 <Image src="/cart.svg" alt="none" width={'20px'} height="20px" />
                                 <Text pl={5}>
                                     Cart
@@ -47,7 +47,7 @@ const Menu = ({ isOpen, onClose, btnRef }: any) => {
 
 
                         <Link href="/" passHref>
-                            <Flex cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
+                            <Flex _hover={{ bg: 'blackAlpha.50' }} cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
                                 <Image src="/home.svg" alt="none" width={'20px'} height="20px" />
 
                                 <Text pl={5}>
@@ -56,7 +56,7 @@ const Menu = ({ isOpen, onClose, btnRef }: any) => {
                             </Flex>
                         </Link>
 
-                        <Flex padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
+                        <Flex _hover={{ bg: 'blackAlpha.50' }} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
 
                             <Image src="/contact.svg" alt="none" width={'20px'} height="20px" />
 
