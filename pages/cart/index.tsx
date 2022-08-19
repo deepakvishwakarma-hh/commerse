@@ -30,7 +30,16 @@ const Cart: Cart = () => {
 
     return (
         <Layout>
-            <Chakra.Flex bg="whitesmoke" p={10}>
+            <Chakra.Flex flexDir={'column'} bg="whitesmoke" p={10}>
+
+                <Chakra.Grid gridTemplateColumns={'2fr 1fr 1fr'} bg="white" my={1} h="50px">
+
+                    <Chakra.Text fontWeight={700} fontSize={18} textTransform="capitalize" h="100%" lineHeight={'50px'} pl={5}>Product & details</Chakra.Text>
+                    <Chakra.Text fontWeight={700} fontSize={18} textTransform="capitalize" borderLeft="5px whitesmoke solid" h="100%" lineHeight={'50px'} pl={5}>quantity</Chakra.Text>
+                    <Chakra.Text fontWeight={700} fontSize={18} textTransform="capitalize" borderLeft="5px whitesmoke solid" h="100%" lineHeight={'50px'} pl={5}>Total</Chakra.Text>
+
+                </Chakra.Grid>
+
                 <Chakra.Flex flex={2} flexDir={'column'}>
 
                     {store.map((item: productDetails, index: number) => {
@@ -39,13 +48,8 @@ const Cart: Cart = () => {
                         )
                     })}
 
-
-
-
                 </Chakra.Flex>
-                <Chakra.Flex flex={1}>
-                    {/* hey */}
-                </Chakra.Flex>
+
             </Chakra.Flex>
         </Layout>
     )

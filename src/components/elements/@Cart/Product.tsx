@@ -42,8 +42,8 @@ const Product = ({ data }: props) => {
 
 
     return (
-        <Chakra.Flex alignItems={'center'} bg="white" py={5} px={5} my={1}>
-            <Chakra.Flex flex={2} >
+        <Chakra.Grid my={1} gridTemplateColumns={'2fr 1fr 1fr'} bg="white" >
+            <Chakra.Flex p={5}>
                 <Chakra.Box bg="black" w="100px">
                     <Img  {...imageProps} loader={imageProps.loader} layout="intrinsic" width="100px" height="100px" objectFit="contain" />
                 </Chakra.Box>
@@ -52,21 +52,24 @@ const Product = ({ data }: props) => {
                         <Chakra.Text fontWeight={700} textTransform="capitalize" py={2} fontSize={20}>{data.name}</Chakra.Text>
                     </Chakra.Box>
                     <Chakra.Flex flex={1} >
-                        <Chakra.Button onClick={remove} bg="blackAlpha.100" >Remove</Chakra.Button>
+                        <Chakra.Button mr={2} borderRadius={0} onClick={remove} bg="red.100" >Remove</Chakra.Button>
+                        <Chakra.Button mr={2} borderRadius={0} px={10} bg="#0070f3" color="white" >Buy  Now</Chakra.Button>
                     </Chakra.Flex>
                 </Chakra.Flex>
             </Chakra.Flex>
-            <Chakra.Flex flex={1}>
+
+            <Chakra.Flex px={5} alignItems={'center'} borderLeft="5px whitesmoke solid">
                 <Chakra.Button bg="blackAlpha.300" borderRadius={'50%'} onClick={QuantityUp}>+</Chakra.Button>
                 <Chakra.Input mx={2} onChange={onChange} value={quantity} type='number' />
                 <Chakra.Button bg="blackAlpha.300" borderRadius={'50%'} onClick={QuantityDown}>-</Chakra.Button>
             </Chakra.Flex>
-            <Chakra.Center flex={1} flexDir='column'>
+
+            <Chakra.Center flexDir='column' borderLeft="5px whitesmoke solid">
                 <Chakra.Text fontWeight={700} fontSize={20}>₹{quantity * data.price}</Chakra.Text>
                 <Chakra.Text color="gray" fontWeight={700} fontSize={10}> {quantity} x {data.price} = {quantity * data.price}</Chakra.Text>
             </Chakra.Center>
 
-        </Chakra.Flex >
+        </Chakra.Grid >
     )
 }
 
