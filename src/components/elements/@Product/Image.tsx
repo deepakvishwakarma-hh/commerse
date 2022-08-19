@@ -5,11 +5,9 @@ interface props {
 import Img from 'next/image';
 import { useState } from "react"
 import ImageChild from "./imageChild"
-import sanityClient from '@sanity/client';
 import * as Chakra from "@chakra-ui/react"
+import { useNextSanityImage } from 'next-sanity-image'
 import { urlFor, configuredSanityClient } from "../../../lib/client"
-import { useNextSanityImage } from 'next-sanity-image';
-
 
 
 const Image = ({ Product }: props) => {
