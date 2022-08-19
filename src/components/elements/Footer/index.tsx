@@ -5,7 +5,7 @@ import { Flex, Heading, Text, Box } from "@chakra-ui/react"
 
 const Footer = () => {
     return (
-        <Flex p={5}>
+        <Flex p={5} flexDir={['column', 'row', 'row', 'row']}>
 
             <Flex flex={1} flexDirection={'column'}>
 

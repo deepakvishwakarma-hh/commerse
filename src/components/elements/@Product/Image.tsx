@@ -20,16 +20,16 @@ const Image = ({ Product }: props) => {
     );
 
     return (
-        <Chakra.Grid bg="blackAlpha.100" width={'800px'} gridTemplateRows="500px auto">
+        <Chakra.Grid bg="blackAlpha.100" width={'100%'} gridTemplateRows="500px auto">
 
-            <Img  {...imageProps} loader={imageProps.loader} layout="intrinsic" width="500px" height="500px" objectFit="contain" />
+            <Img  {...imageProps} loader={imageProps.loader} layout="intrinsic" width="100%" height="100%" objectFit="contain" />
 
-            <Chakra.Flex overflowX={'auto'} p={2} bg="blackAlpha.100" alignItems={'center'} justifyContent="center">
+            {Product.image.length !== 1 && <Chakra.Flex overflowX={'auto'} p={2} bg="blackAlpha.100" alignItems={'center'} justifyContent="center">
 
                 {Product.image.map((imageData: any, i: number) => <ImageChild src={urlFor(imageData)} i={i} key={i} setIndex={setIndex} />)}
 
-            </Chakra.Flex>
-        </Chakra.Grid>
+            </Chakra.Flex>}
+        </Chakra.Grid >
     )
 }
 
