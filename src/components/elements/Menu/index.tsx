@@ -15,7 +15,7 @@ import {
 import CollectionAccordionItem from "./collection"
 import AccountAccordionItem from "./account"
 import InfoAccordionItem from './info'
-
+import Link from 'next/link'
 // import Image from 'next/image'
 
 
@@ -36,13 +36,26 @@ const Menu = ({ isOpen, onClose, btnRef }: any) => {
                         <AccountAccordionItem />
                         <InfoAccordionItem />
 
-                        <Flex padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
-                            <Image src="/cart.svg" alt="none" width={'20px'} height="20px" />
+                        <Link href="/cart" passHref>
+                            <Flex cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
+                                <Image src="/cart.svg" alt="none" width={'20px'} height="20px" />
+                                <Text pl={5}>
+                                    Cart
+                                </Text>
+                            </Flex>
+                        </Link>
 
-                            <Text pl={5}>
-                                Cart
-                            </Text>
-                        </Flex>
+
+                        <Link href="/" passHref>
+                            <Flex cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
+                                <Image src="/home.svg" alt="none" width={'20px'} height="20px" />
+
+                                <Text pl={5}>
+                                    Home
+                                </Text>
+                            </Flex>
+                        </Link>
+
                         <Flex padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
 
                             <Image src="/contact.svg" alt="none" width={'20px'} height="20px" />
