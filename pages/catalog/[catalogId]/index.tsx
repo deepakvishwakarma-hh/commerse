@@ -33,6 +33,11 @@ export default Catalog
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
+    context.res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
+
     const { catalogId } = context.query
 
     const queryCatalog = `*[_type == "catalog" && name == "${catalogId}"]`;

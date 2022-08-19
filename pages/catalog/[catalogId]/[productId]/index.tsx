@@ -42,6 +42,12 @@ const Page = ({ product }: any) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+
+    context.res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
+
     const { productId } = context.query
     const queryProducts = `*[_type == "product" && slug.current == "${productId}"]`;
     const product = await client.fetch(queryProducts);
