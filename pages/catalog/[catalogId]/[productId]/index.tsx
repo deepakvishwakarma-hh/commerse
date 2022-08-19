@@ -19,18 +19,31 @@ const Page = ({ product }: any) => {
 
     return (
         <Layout>
-            <Chakra.Grid w="100vw" gridTemplateColumns={['auto', 'auto', "auto", 'repeat(2, 1fr)']} px={0}>
+            <Chakra.Grid w="100vw" gridTemplateColumns={['auto', 'auto', "auto", 'repeat(2, 1fr)']} >
                 <ImageComp Product={Product} />
-                <Chakra.Box px={5}>
-                    <Chakra.Heading py={5} fontSize={30}> {Product.name}</Chakra.Heading>
-                    <Chakra.Box >
-                        <Chakra.Text fontSize={16} pr={2} fontWeight={800}>Details </Chakra.Text>
+                <Chakra.Box px={5} pt={5}>
+
+                    <Chakra.Box mb={5}>
+                        <Chakra.Text color="gray" mb={3} fontSize={16} fontWeight={800} >Name </Chakra.Text>
+                        <Chakra.Heading fontSize={30}> {Product.name}</Chakra.Heading>
+
+                    </Chakra.Box>
+
+                    <Chakra.Box mb={5}>
+                        <Chakra.Text color="gray" mb={3} fontSize={16} fontWeight={800} >Details </Chakra.Text>
                         <Chakra.Text >{Product.details} </Chakra.Text>
                     </Chakra.Box>
-                    <Chakra.Flex my={2} p={2} alignItems={'center'} borderRadius={5}>
+
+                    <Chakra.Box mb={5}>
+                        <Chakra.Text color="gray" mb={3} fontSize={16} fontWeight={800} >Pricing </Chakra.Text>
+                        <Chakra.Text fontSize={20} fontWeight={800}  > ₹ {Product.price} </Chakra.Text>
+                    </Chakra.Box>
+
+
+                    {/* <Chakra.Flex my={2} p={2} alignItems={'center'} borderRadius={5}>
                         <Chakra.Text fontSize={20} pr={2} fontWeight={800}>Price : </Chakra.Text>
                         <Chakra.Text fontSize={20} fontWeight={800} >₹{Product.price} </Chakra.Text>
-                    </Chakra.Flex>
+                    </Chakra.Flex> */}
                     <Chakra.Flex>
                         <AddToCart product={Product} />
                         <Chakra.Button px={10} mx={2} border=" 2px solid #0070f3" color="#0070f3"  >Buy Now</Chakra.Button>
