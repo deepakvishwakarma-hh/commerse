@@ -12,7 +12,7 @@ const Header = ({ onOpen, btnRef }: any) => {
     const onLogoClickHandler = () => { Router.push('/') }
 
     return (
-        <Flex pos={'fixed'} width="100%" top={0} left={0} bg='white'
+        <Flex pos={'fixed'} zIndex={999999} width="100%" top={0} left={0} bg='white'
             boxShadow={'sm'}
             height="70px" px={5} flexDir="column" justifyContent={'center'}>
             <Flex alignItems="center">
