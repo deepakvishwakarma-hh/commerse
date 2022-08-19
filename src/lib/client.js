@@ -15,3 +15,9 @@ const builder = imageUrlBuilder(client);
 
 export const urlFor = (source) => builder.image(source);
 
+export const configuredSanityClient = sanityClient({
+    projectId: 'lop0w17p',
+    dataset: 'production',
+    useCdn: true
+});
+

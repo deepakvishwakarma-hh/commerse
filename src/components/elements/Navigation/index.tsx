@@ -7,7 +7,7 @@ import Router from 'next/router'
 
 const Header = ({ onOpen, btnRef }: any) => {
 
-    const onCartClickHandler = () => Router.push('cart')
+    const onCartClickHandler = () => Router.push('/cart')
     const onWhatClickHandler = () => { }
     const onLogoClickHandler = () => { Router.push('/') }
 
@@ -43,8 +43,6 @@ const Header = ({ onOpen, btnRef }: any) => {
             </Flex>
 
             <Flex alignItems="center" bg="rgba(128, 128, 128, 0.300);"  >
-
-
             </Flex>
         </Flex >
     )

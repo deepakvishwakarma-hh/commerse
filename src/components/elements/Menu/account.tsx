@@ -3,9 +3,9 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon
-    , Flex, Text, Box
+    , Flex, Text, Box, Image
 } from '@chakra-ui/react'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 //BUG
 import Item from './_item';

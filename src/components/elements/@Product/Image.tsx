@@ -7,14 +7,10 @@ import { useState } from "react"
 import ImageChild from "./imageChild"
 import sanityClient from '@sanity/client';
 import * as Chakra from "@chakra-ui/react"
-import { urlFor } from "../../../lib/client"
+import { urlFor, configuredSanityClient } from "../../../lib/client"
 import { useNextSanityImage } from 'next-sanity-image';
 
-const configuredSanityClient = sanityClient({
-    projectId: 'lop0w17p',
-    dataset: 'production',
-    useCdn: true
-});
+
 
 const Image = ({ Product }: props) => {
 

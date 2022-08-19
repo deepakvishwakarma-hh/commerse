@@ -8,7 +8,7 @@ import {
     DrawerContent,
     DrawerCloseButton,
     Accordion,
-    Button, Box, Text, Flex
+    Button, Box, Text, Flex, Image
 } from '@chakra-ui/react'
 
 
@@ -16,7 +16,7 @@ import CollectionAccordionItem from "./collection"
 import AccountAccordionItem from "./account"
 import InfoAccordionItem from './info'
 
-import Image from 'next/image'
+// import Image from 'next/image'
 
 
 const Menu = ({ isOpen, onClose, btnRef }: any) => {
@@ -55,7 +55,6 @@ const Menu = ({ isOpen, onClose, btnRef }: any) => {
                         <Text mt={5} color={'gray.500'} fontSize={13} padding={'8px 16px'} >
                             RKC <br />
                             © All Right Reserved</Text>
-
 
                     </Accordion>
 

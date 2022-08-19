@@ -3,9 +3,9 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon
-    , Flex, Text, Box
+    , Flex, Text, Box, Image
 } from '@chakra-ui/react'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 
 const FakeData = [{ name: "return & refund policy", image: '' }, { name: "privacy policy", image: '' }, { name: "payment policy", image: '' }, { name: "shipping policy", image: '' }, { name: "term  & condition", image: '' }]
