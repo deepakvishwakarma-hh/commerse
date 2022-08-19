@@ -16,7 +16,7 @@ const Product = ({ data }: any) => {
     }
 
     return (
-        <Chakra.Grid onClick={onClickHandler}
+        <Chakra.Grid _hover={{ outline: '2px solid gray' }} cursor="pointer" onClick={onClickHandler}
             boxShadow={'sm'} gridTemplateRows={'300px 80px'} gridTemplateColumns={'auto'} mx={5} mb={10} overflow="hidden" >
 
             <Image  {...imageProps} loader={imageProps.loader} layout="intrinsic" width="500px" height="500px" objectFit="scale-down" alt="none" />
