@@ -20,7 +20,7 @@ const Image = ({ Product }: props) => {
     );
 
     return (
-        <Chakra.Grid bg="blackAlpha.100" width={'100%'} gridTemplateRows="500px auto">
+        <Chakra.Grid bg="blackAlpha.100" width={'100%'} gridTemplateRows="500px auto" px={[0, 10]}>
 
             <Img  {...imageProps} loader={imageProps.loader} layout="intrinsic" width="100%" height="100%" objectFit="contain" />
 

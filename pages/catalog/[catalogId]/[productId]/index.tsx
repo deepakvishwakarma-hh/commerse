@@ -19,9 +19,10 @@ const Page = ({ product }: any) => {
 
     return (
         <Layout>
-            <Chakra.Grid w="100vw" gridTemplateColumns={['auto', 'auto', "auto", 'repeat(2, 1fr)']} >
+            <Chakra.Grid mb={[20, 0]} bg="whitesmoke" w="100vw" gridTemplateColumns={['100vw', '100vw', "100vw", "1fr 1fr", "1fr 1fr"]} >
                 <ImageComp Product={Product} />
-                <Chakra.Box px={5} pt={5}>
+                <Chakra.Box px={[5, 10, 15, 20]} py={10}
+                >
 
                     <Chakra.Box mb={5}>
                         <Chakra.Text color="gray" mb={3} fontSize={16} fontWeight={800} >Name </Chakra.Text>
@@ -39,14 +40,9 @@ const Page = ({ product }: any) => {
                         <Chakra.Text fontSize={20} fontWeight={800}  > ₹ {Product.price} </Chakra.Text>
                     </Chakra.Box>
 
-
-                    {/* <Chakra.Flex my={2} p={2} alignItems={'center'} borderRadius={5}>
-                        <Chakra.Text fontSize={20} pr={2} fontWeight={800}>Price : </Chakra.Text>
-                        <Chakra.Text fontSize={20} fontWeight={800} >₹{Product.price} </Chakra.Text>
-                    </Chakra.Flex> */}
-                    <Chakra.Flex>
+                    <Chakra.Flex flexDir={['column', 'row']}>
                         <AddToCart product={Product} />
-                        <Chakra.Button px={10} mx={2} border=" 2px solid #0070f3" color="#0070f3"  >Buy Now</Chakra.Button>
+                        <Chakra.Button my={[2, 0]} px={10} mx={2} border=" 2px solid #0070f3" color="#0070f3"  >Buy Now</Chakra.Button>
                     </Chakra.Flex>
                 </Chakra.Box>
             </Chakra.Grid>
