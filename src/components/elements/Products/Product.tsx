@@ -20,7 +20,7 @@ const Product = ({ data }: any) => {
     }
 
     return (
-        <Chakra.Box onClick={onClickHandler} ref={elementRef} overflow={'hidden'} p={2} bg='white' m={1}>
+        <Chakra.Box width={['150px', 'initial']} onClick={onClickHandler} ref={elementRef} overflow={'hidden'} p={2} bg='white' m={1}>
             <Image  {...imageProps} loader={imageProps.loader} layout="intrinsic"
                 alt="none"
                 height={dimensions?.contentBox?.width ?? '200px'}
