@@ -20,7 +20,7 @@ const Catalog = ({ data }: any) => {
     }
 
     return (
-        <Chakra.Box width={['150px', 'initial']} onClick={onClickHandler} ref={elementRef} overflow={'hidden'} p={2} bg='white' m={1}>
+        <Chakra.Box maxW="250px" _hover={{ bg: 'black', color: 'white' }} cursor="pointer" width={['150px', 'initial']} onClick={onClickHandler} ref={elementRef} overflow={'hidden'} p={2} bg='white' m={1}>
             <Image  {...imageProps} loader={imageProps.loader} layout="intrinsic"
                 alt="none"
                 height={dimensions?.contentBox?.width ?? '200px'}
