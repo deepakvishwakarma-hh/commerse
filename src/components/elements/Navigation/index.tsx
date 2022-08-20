@@ -9,12 +9,11 @@ import { Searchbar } from '..'
 
 const Header = ({ onOpen, btnRef }: any) => {
 
-    const finalRef = useRef(null)
-    const Model = Chakra.useDisclosure()
-
     const onCartClickHandler = () => Router.push('/cart')
     const onLogoClickHandler = () => { Router.push('/') }
 
+    const Model = Chakra.useDisclosure()
+    const finalRef = useRef(null)
 
 
     return (
@@ -55,12 +54,16 @@ const Header = ({ onOpen, btnRef }: any) => {
                 </Chakra.Flex>
             </Chakra.Grid >
 
-            <Chakra.Modal scrollBehavior='inside' finalFocusRef={finalRef} isOpen={Model.isOpen} onClose={Model.onClose}>
+            <Chakra.Modal finalFocusRef={finalRef} isOpen={Model.isOpen} onClose={Model.onClose}>
                 <Chakra.ModalOverlay />
                 <Chakra.ModalContent>
+
                     <Chakra.ModalHeader>Search</Chakra.ModalHeader>
+
                     <Chakra.ModalCloseButton />
-                    <Chakra.ModalBody  ><Searchbar /></Chakra.ModalBody>
+
+                    <Chakra.ModalBody><Searchbar /></Chakra.ModalBody>
+
                 </Chakra.ModalContent>
             </Chakra.Modal>
 
