@@ -1,6 +1,5 @@
 import * as Chakra from "@chakra-ui/react"
 
-
 const Child = ({ heading, links }: { heading: string; links: string[] }) => {
     return (
         <Chakra.Box my={2} pl={5}>
