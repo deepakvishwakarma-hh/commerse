@@ -11,6 +11,8 @@ import { HomeLayout as Layout } from "../../../src/components/layouts";
 
 const Catalog = ({ products, catalog }: props) => {
 
+    console.log(catalog)
+
     const router = useRouter()
     const catalogId = router.query.catalogId as string
 
@@ -40,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const { catalogId } = context.query
 
-    const queryCatalog = `*[_type == "catalog" && name == "${catalogId}"]`;
+    const queryCatalog = `*[_type == "catalog" && slug.current == "${catalogId}"]`;
     const catalog = await client.fetch(queryCatalog);
 
     const queryProducts = `*[_type == "product" && references("${catalog[0]?._id}")]`;
