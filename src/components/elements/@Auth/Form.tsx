@@ -7,12 +7,12 @@ declare global {
 
 import jwt from "jsonwebtoken"
 import { useState } from "react"
+import Router from "next/router";
 import * as Chakra from '@chakra-ui/react'
 import { doc, setDoc } from "firebase/firestore";
 import { RecaptchaVerifier } from "firebase/auth"
 import { signInWithPhoneNumber } from "firebase/auth"
 import { authentication, firestore } from "../../../../firebase"
-
 const Form = () => {
 
     const initial = {
@@ -25,10 +25,7 @@ const Form = () => {
     const [isSendOtpBtnVisible, setSendOtpBtnVisiblity] = useState(true)
 
     const resetForm = () => {
-        setSendOtpBtnVisiblity(true)
-        setPhoneNumber('')
-        setOtp('')
-        setAcessiblity(initial)
+        Router.reload()
     }
 
     const generateRecaptcha = () => {
