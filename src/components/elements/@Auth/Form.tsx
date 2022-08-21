@@ -91,7 +91,6 @@ const Form = () => {
             <Chakra.Heading pb={5} textAlign={'center'}>Authenticate</Chakra.Heading>
             <Chakra.Center>
                 <Chakra.FormControl maxW="300px ">
-                    <Chakra.FormLabel>Phone Number</Chakra.FormLabel>
                     <Chakra.Input placeholder={"Mobile Number"} type="number" onChange={(event) => { setPhoneNumber(event.target.value.toString()) }} value={phoneNumber} />
                     <Chakra.FormHelperText mb={5}>Please don&apos;t include +91 (country code)</Chakra.FormHelperText>
                     {isSendOtpBtnVisible && <Chakra.Button variant={'unstyled'} onClick={getOtp} my={1} bg="#0070f3" color="white" w="100%"> {acessiblity.isSendOTPTriggered ? <Chakra.Spinner /> : 'Send OTP'} </Chakra.Button>}
