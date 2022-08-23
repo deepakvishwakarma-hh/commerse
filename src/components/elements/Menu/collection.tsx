@@ -1,9 +1,7 @@
 import Router from 'next/router'
 import * as Chakra from '@chakra-ui/react'
-import { urlFor } from "../../../lib/client"
 import { client } from "../../../lib/client"
 import { useEffect, useState } from "react"
-
 
 const CollectionAccordionItem = () => {
 

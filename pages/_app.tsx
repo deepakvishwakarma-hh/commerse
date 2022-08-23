@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 const theme = extendTheme({
   fonts: {
     body: `'Nunito', sans-serif`,
-    heading: `'Playfair Display', serif`
+    heading: `'Playfair Display',  sans-serif`
   }
 })
 
