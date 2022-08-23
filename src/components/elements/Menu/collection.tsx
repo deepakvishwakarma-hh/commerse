@@ -41,9 +41,8 @@ const CollectionAccordionItem = () => {
                 }
 
                 {catalogs.map((data: any, index: number) => {
-                    return <Chakra.Flex cursor={'pointer'} alignItems={'center'} my={2} key={index} onClick={() => { Router.push(`/catalog/${data.slug.current}`) }}>
-                        <Chakra.Image w="50px" h="50px" src={urlFor(data.image) as any} alt="" />
-                        <Chakra.Text fontSize={13} fontWeight={500} color="gray" textTransform={'capitalize'} px={2}>{data.name}</Chakra.Text>
+                    return <Chakra.Flex _hover={{ bg: 'whitesmoke' }} cursor={'pointer'} alignItems={'center'} p={2} key={index} onClick={() => { Router.push(`/catalog/${data.slug.current}`) }}>
+                        <Chakra.Text fontSize={13} fontWeight={500} color="gray" textTransform={'capitalize'} >{data.name}</Chakra.Text>
                     </Chakra.Flex>
                 })}
             </Chakra.AccordionPanel>
