@@ -1,7 +1,10 @@
+// Better Understanding of [Firebase Err , type , query]
+
+
 declare global {
     interface Window {
-        recaptchaVerifier: any,
-        confirmationResult: any
+        recaptchaVerifier: any, // custom 
+        confirmationResult: any // custom 
     }
 }
 
@@ -13,6 +16,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { RecaptchaVerifier } from "firebase/auth"
 import { signInWithPhoneNumber } from "firebase/auth"
 import { authentication, firestore } from "../../../../firebase"
+
 const Form = () => {
 
     const initial = {
@@ -24,14 +28,14 @@ const Form = () => {
     const [acessiblity, setAcessiblity] = useState(initial)
     const [isSendOtpBtnVisible, setSendOtpBtnVisiblity] = useState(true)
 
-    const resetForm = () => {
+    const onResetForm = () => {
         Router.reload()
     }
 
     const generateRecaptcha = () => {
         window.recaptchaVerifier = new RecaptchaVerifier('recapcha-container', {
             'size': 'invisible',
-            'callback': (response: any) => { }
+            'callback': () => { }
         }, authentication);
     }
 
@@ -39,8 +43,9 @@ const Form = () => {
         event.preventDefault()
         if (phoneNumber.length == 10) {
             setAcessiblity(prev => { return { ...prev, isSendOTPTriggered: true } })
-            generateRecaptcha()
+            generateRecaptcha() // recaptcha generated ;
             let appVerifier = window.recaptchaVerifier
+            // sending OTP
             signInWithPhoneNumber(authentication, `+91${phoneNumber}`, appVerifier)
                 .then((result) => {
                     setSendOtpBtnVisiblity(false)
@@ -48,7 +53,7 @@ const Form = () => {
                 })
                 .catch((err) => {
                     alert(err);
-                    resetForm()
+                    onResetForm()
                 })
         } else {
             alert('Please put valid phone number!')
@@ -56,31 +61,37 @@ const Form = () => {
     }
 
     const verifyOTP = () => {
-        setAcessiblity(prev => { return { ...prev, isVerifyOTPTriggered: true } })
-        let confirmationResult = window.confirmationResult;
-        confirmationResult.confirm(otp)
-            .then((result: any) => {
-                const user = result.user;
-                if (user) {
-                    setDoc(doc(firestore, "cities", `${user.phoneNumber}`), {
-                        uid: user.uid
-                    }).then(() => { console.log('user saved successfully') }).catch((err) => alert(err))
+        if (otp.length == 6) {
+            setAcessiblity(prev => { return { ...prev, isVerifyOTPTriggered: true } })
+            let confirmationResult = window.confirmationResult;
+            confirmationResult.confirm(otp)
+                .then((result: any) => {
+                    const user = result.user;
+                    if (user) {
+                        setDoc(doc(firestore, "users", `${user.phoneNumber}`), {
+                            uid: user.uid
+                        })
+                            .then(() => {
+                                alert('user saved successfully')
+                                onResetForm()
+                            })
+                            .catch((err) => alert(err))
 
-                    const credentials = jwt.sign({ phoneNumber: user.phoneNumber, uid: user.uid }, 'loremipsumalehmad');
-                    localStorage.setItem('token', credentials)
+                        const credentials = jwt.sign({ phoneNumber: user.phoneNumber, uid: user.uid }, 'loremipsumalehmad');
+                        localStorage.setItem('token', credentials)
 
-                    setAcessiblity(initial)
-                    // Router.push('/admin')
-                }
-            }).catch((err: any) => {
-                alert(err)
-                resetForm()
-            })
+                        console.log(user)
+                        setAcessiblity(initial)
+                        // Router.push('/admin')
+                    }
+                }).catch((err: any) => {
+                    alert(err)
+                    onResetForm()
+                })
+        } else {
+            alert('OTP must be 6 number long!')
+        }
     }
-
-
-
-
 
 
     return (
@@ -99,7 +110,7 @@ const Form = () => {
                             <Chakra.Button variant={'unstyled'} onClick={verifyOTP} my={2} bg="#0070f3" color="white" w="100%">{acessiblity.isVerifyOTPTriggered ? <Chakra.Spinner /> : 'Verify'}  </Chakra.Button>
                         </>
                     }
-                    <Chakra.Button onClick={resetForm} variant={'unstyled'} my={1} color="#0070f3" border=" 2px solid #0070f3" w="100%">Reset Form </Chakra.Button>
+                    <Chakra.Button onClick={onResetForm} variant={'unstyled'} my={1} color="#0070f3" border=" 2px solid #0070f3" w="100%">Reset Form </Chakra.Button>
                 </Chakra.FormControl>
             </Chakra.Center>
             <Chakra.Box id={"recapcha-container"}></Chakra.Box>
