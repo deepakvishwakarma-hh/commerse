@@ -28,7 +28,7 @@ const Search = () => {
     }
 
     const Results: any[] = useMemo(() => products.map((item: any, index: number) => {
-        if (item.name.toLowerCase().includes(input) && input !== '') {
+        if (item?.name.toLowerCase().includes(input) && input !== '') {
             return <Result key={index} item={item} />
         } else { return undefined }
         // eslint-disable-next-line react-hooks/exhaustive-deps
