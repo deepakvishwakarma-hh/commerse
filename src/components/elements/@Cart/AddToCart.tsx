@@ -3,7 +3,7 @@ import * as Chakra from "@chakra-ui/react"
 import { useAppDispatch, useAppSelector } from '../../../redux'
 import { addProduct, type productDetails } from '../../../redux/cart'
 
-const AddToCart = ({ product }: any) => {
+const AddToCart = ({ product, quantity }: any) => {
 
     const store = useAppSelector(store => store.cart)
     const dispatch = useAppDispatch()
@@ -24,7 +24,7 @@ const AddToCart = ({ product }: any) => {
                 name: product.name,
                 price: product.price,
                 image: product.image[0],
-                quantity: 1,
+                quantity
             }))
             toast({
                 duration: 3000,
@@ -38,7 +38,7 @@ const AddToCart = ({ product }: any) => {
 
     }
     return (
-        <Chakra.Button onClick={Cart} px={10} mx={2} bg="#0070f3" color="white" >Add to cart</Chakra.Button>
+        <Chakra.Button isDisabled={isNaN(quantity)} _hover={{ opacity: .8 }} onClick={Cart} px={10} mx={2} bg="#0070f3" color="white">Add {!isNaN(quantity) && quantity} to cart</Chakra.Button>
     )
 }
 

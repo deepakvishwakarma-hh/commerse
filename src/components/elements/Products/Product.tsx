@@ -6,6 +6,7 @@ import { useNextSanityImage } from 'next-sanity-image';
 import { configuredSanityClient } from "../../../lib/client"
 
 const Product = ({ data }: any) => {
+    console.log(data)
 
     const elementRef = useRef(null)
     const dimensions = Chakra.useDimensions(elementRef)
