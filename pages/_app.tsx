@@ -3,8 +3,6 @@ import type { AppProps } from 'next/app'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import store, { useAppSelector } from "../src/redux"
-import { persistStore } from 'redux-persist'
-import { PersistGate } from 'redux-persist/integration/react'
 // TRANSFER
 const theme = extendTheme({
   fonts: {
@@ -14,16 +12,13 @@ const theme = extendTheme({
 })
 
 
-let persistor = persistStore(store)
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store} >
-      <PersistGate persistor={persistor}>
-        <ChakraProvider theme={theme}>
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </PersistGate>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
     </Provider>
   )
 }

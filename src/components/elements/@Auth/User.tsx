@@ -21,7 +21,7 @@ const User = () => {
 
     return (
         <Chakra.Center pos="fixed" left={0} top={0} h="100%" w="100%" flexDir={'column'}>
-            <Chakra.Heading fontSize={30} fontWeight="bold">Logged in with → {userData?.phoneNumber}</Chakra.Heading>
+            <Chakra.Heading textAlign={'center'} fontSize={30} fontWeight="bold">Logged in with → {userData?.phoneNumber}</Chakra.Heading>
             <Chakra.Button onClick={onLogOutHandler} mt={5} fontSize={14} variant={'unstyled'} bg="blackAlpha.800" px="5rem !important" color="white"> Logout </Chakra.Button>
         </Chakra.Center>
     )
