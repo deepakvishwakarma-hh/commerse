@@ -24,6 +24,7 @@ const AddToCart = ({ product, quantity }: any) => {
                 name: product.name,
                 price: product.price,
                 image: product.image[0],
+                details: product.details,
                 quantity
             }))
             toast({
@@ -33,8 +34,6 @@ const AddToCart = ({ product, quantity }: any) => {
                 render: () => (<Chakra.Box bg="whatsapp.200" p={3} borderRadius={5} boxShadow={'md'} fontWeight={700}>👍 Product added to Cart</Chakra.Box>)
             })
         }
-
-
 
     }
     return (
