@@ -2,7 +2,7 @@ interface props {
     data: productDetails
 }
 import Img from 'next/image'
-import Router from 'next/router';
+import Link from 'next/link';
 import { useState, useRef } from 'react'
 import * as Chakra from '@chakra-ui/react'
 import { QuantityMeasure } from '../@Product';
@@ -10,7 +10,6 @@ import { useAppDispatch } from '../../../redux';
 import { useNextSanityImage } from 'next-sanity-image';
 import { configuredSanityClient } from "../../../lib/client"
 import { removeProduct, type productDetails } from '../../../redux/cart'
-
 const Product = ({ data }: props) => {
 
     const dispatch = useAppDispatch()
@@ -32,13 +31,10 @@ const Product = ({ data }: props) => {
         dispatch(removeProduct(data.name))
     }
 
-    const onClickProduct = () => {
-        Router.push(data.url)
-    }
 
     return (
 
-        <Chakra.Grid onClick={onClickProduct} p={[0, 5]} gridTemplateRows={['auto auto', 'auto']} gridTemplateColumns={[' 100px 1fr', ' 200px 1fr']} bg="white" mb={[10, 5]}>
+        <Chakra.Grid p={[0, 5]} gridTemplateRows={['auto auto', 'auto']} gridTemplateColumns={[' 100px 1fr', ' 200px 1fr']} bg="white" mb={[10, 5]}>
 
             <Chakra.Center ref={elementRef} flexDirection="column">
 
@@ -54,9 +50,10 @@ const Product = ({ data }: props) => {
 
             <Chakra.Grid py={2} gridTemplateRows={['1fr 30px 30px', '1.5fr .5fr .5fr .5fr']} px={[5, 5]}>
 
-                <Chakra.Center justifyContent={'start'}>
-                    <Chakra.Heading fontWeight={700} textTransform="capitalize" fontSize={[18, 25]}>{cropText(data.name, 30)}</Chakra.Heading>
-                </Chakra.Center>
+                <Link href={data.url} passHref>
+                    <Chakra.Center justifyContent={'start'}>
+                        <Chakra.Heading _hover={{ textDecoration: 'underline' }} fontWeight={700} textTransform="capitalize" fontSize={[18, 25]}>{cropText(data.name, 30)}</Chakra.Heading>
+                    </Chakra.Center></Link>
 
                 <Chakra.Center justifyContent={'start'} display={['none', 'none', 'flex']}>
                     <Chakra.Text fontWeight={500} color="gray" textTransform="capitalize" fontSize={15}>{cropText(data.details, 100)} </Chakra.Text>
@@ -77,6 +74,8 @@ const Product = ({ data }: props) => {
                 <Chakra.Flex flexDir={['column', 'row']}>
                     <QuantityMeasure {...{ quantity, setQuantity }} full />
                     <Chakra.Button border={"lightgray 2px solid !important"} borderTop={["none !important", 'lightgray 2px solid !important']} bg="transparent" color={'black'} borderRadius={0} w="100%" ml={[0, 5]} onClick={remove} >Remove</Chakra.Button>
+
+
                 </Chakra.Flex>
 
             </Chakra.GridItem>
