@@ -6,7 +6,6 @@ import { useNextSanityImage } from 'next-sanity-image';
 import { configuredSanityClient } from "../../../lib/client"
 
 const Product = ({ data }: any) => {
-    console.log(data)
 
     const elementRef = useRef(null)
     const dimensions = Chakra.useDimensions(elementRef)
@@ -15,6 +14,10 @@ const Product = ({ data }: any) => {
         configuredSanityClient,
         data.image[0]
     );
+
+    const cropText = (str: string, length: number) => {
+        return str.length > length ? str.slice(0, length) + '...' : str
+    }
 
     const onClickHandler = () => {
         Router.push(`${Router.asPath}/${data.slug.current}`)
@@ -26,8 +29,9 @@ const Product = ({ data }: any) => {
                 alt="none"
                 height={dimensions?.contentBox?.width ?? '200px'}
                 width={dimensions?.contentBox?.width ?? '200px'} />
-            <Chakra.Text fontWeight={500} textTransform={'capitalize'}>{data.name}</Chakra.Text>
+            <Chakra.Text fontWeight={500} textTransform={'capitalize'}>{cropText(data.name, 20)}</Chakra.Text>
         </Chakra.Box>
+
     )
 }
 export default Product
