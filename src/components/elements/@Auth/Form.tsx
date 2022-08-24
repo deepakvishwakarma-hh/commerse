@@ -72,7 +72,6 @@ const Form = () => {
                             uid: user.uid
                         })
                             .then(() => {
-                                alert('user saved successfully')
                                 onResetForm()
                             })
                             .catch((err) => alert(err))
@@ -82,7 +81,6 @@ const Form = () => {
 
                         console.log(user)
                         setAcessiblity(initial)
-                        // Router.push('/admin')
                     }
                 }).catch((err: any) => {
                     alert(err)
@@ -95,26 +93,30 @@ const Form = () => {
 
 
     return (
-        <Chakra.Box px={5} bg='whitesmoke' py={10}>
-            <Chakra.Heading pb={5} textAlign={'center'}>Authenticate</Chakra.Heading>
-            <Chakra.Center>
-                <Chakra.FormControl maxW="300px ">
-                    <Chakra.Input placeholder={"Mobile Number"} type="number" onChange={(event) => { setPhoneNumber(event.target.value.toString()) }} value={phoneNumber} />
-                    <Chakra.FormHelperText mb={5}>Please don&apos;t include +91 (country code)</Chakra.FormHelperText>
-                    {isSendOtpBtnVisible && <Chakra.Button variant={'unstyled'} onClick={getOtp} my={1} bg="#0070f3" color="white" w="100%"> {acessiblity.isSendOTPTriggered ? <Chakra.Spinner /> : 'Send OTP'} </Chakra.Button>}
-                    {
-                        !isSendOtpBtnVisible &&
-                        <>
-                            <Chakra.FormLabel mt={5}>Varify OTP</Chakra.FormLabel>
-                            <Chakra.Input placeholder={"Enter your mobile number"} type="number" onChange={(event) => { setOtp(event.target.value.toString()) }} value={otp} />
-                            <Chakra.Button variant={'unstyled'} onClick={verifyOTP} my={2} bg="#0070f3" color="white" w="100%">{acessiblity.isVerifyOTPTriggered ? <Chakra.Spinner /> : 'Verify'}  </Chakra.Button>
-                        </>
-                    }
-                    <Chakra.Button onClick={onResetForm} variant={'unstyled'} my={1} color="#0070f3" border=" 2px solid #0070f3" w="100%">Reset Form </Chakra.Button>
-                </Chakra.FormControl>
-            </Chakra.Center>
-            <Chakra.Box id={"recapcha-container"}></Chakra.Box>
-        </Chakra.Box>
+        <Chakra.Center pos="fixed" left={0} top={0} h="100%" w="100%"  >
+            <Chakra.Box p={'5rem'} bg="gray.50" >
+                <Chakra.Text as="h1" pb={5} textAlign={'center'} fontWeight={500}>Redkart</Chakra.Text>
+                <Chakra.Heading as="h1" pb={5} textAlign={'center'}>Authentication</Chakra.Heading>
+                <Chakra.Center>
+                    <Chakra.FormControl maxW="300px ">
+                        <Chakra.Input name="phone-number" placeholder={"Mobile Number"} type="number" onChange={(event) => { setPhoneNumber(event.target.value.toString()) }} value={phoneNumber} />
+                        <Chakra.FormHelperText color="gray" mb={5}>Please don&apos;t include +91 (country code)</Chakra.FormHelperText>
+                        {isSendOtpBtnVisible && <Chakra.Button fontSize={14} variant={'unstyled'} onClick={getOtp} my={1} bg="blackAlpha.800" color="white" w="100%"> {acessiblity.isSendOTPTriggered ? <Chakra.Spinner size="xs" /> : 'Send OTP'} </Chakra.Button>}
+                        {
+                            !isSendOtpBtnVisible &&
+                            <>
+                                <Chakra.FormLabel mt={5}>Varify OTP</Chakra.FormLabel>
+                                <Chakra.Input name="otp" placeholder={"Otp"} type="number" onChange={(event) => { setOtp(event.target.value.toString()) }} value={otp} />
+                                <Chakra.Button mb={5} fontSize={14} variant={'unstyled'} onClick={verifyOTP} my={2} bg="blackAlpha.800" color="white" w="100%">{acessiblity.isVerifyOTPTriggered ? <Chakra.Spinner size={'xs'} /> : 'Verify'}  </Chakra.Button>
+                            </>
+                        }
+                        <Chakra.Button fontSize={14} onClick={onResetForm} variant={'unstyled'} my={1} color="blackAlpha.800" w="100%">Reset Form </Chakra.Button>
+                    </Chakra.FormControl>
+                </Chakra.Center>
+                <Chakra.Box id={"recapcha-container"}></Chakra.Box>
+            </Chakra.Box>
+        </Chakra.Center>
+
     )
 }
 
