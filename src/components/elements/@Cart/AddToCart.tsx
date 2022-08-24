@@ -1,9 +1,12 @@
 import React from 'react'
+import Router from 'next/router'
 import * as Chakra from "@chakra-ui/react"
 import { useAppDispatch, useAppSelector } from '../../../redux'
 import { addProduct, type productDetails } from '../../../redux/cart'
 
 const AddToCart = ({ product, quantity }: any) => {
+
+    const { catalogId, productId } = Router.query
 
     const store = useAppSelector(store => store.cart)
     const dispatch = useAppDispatch()
@@ -25,6 +28,7 @@ const AddToCart = ({ product, quantity }: any) => {
                 price: product.price,
                 image: product.image[0],
                 details: product.details,
+                url: `catalog/${catalogId}/${productId}`,
                 quantity
             }))
             toast({

@@ -2,6 +2,7 @@ interface props {
     data: productDetails
 }
 import Img from 'next/image'
+import Router from 'next/router';
 import { useState, useRef } from 'react'
 import * as Chakra from '@chakra-ui/react'
 import { QuantityMeasure } from '../@Product';
@@ -10,8 +11,8 @@ import { useNextSanityImage } from 'next-sanity-image';
 import { configuredSanityClient } from "../../../lib/client"
 import { removeProduct, type productDetails } from '../../../redux/cart'
 
-
 const Product = ({ data }: props) => {
+    console.log(data)
 
     const dispatch = useAppDispatch()
 
@@ -23,7 +24,6 @@ const Product = ({ data }: props) => {
         return str.length > length ? str.slice(0, length) + '...' : str
     }
 
-
     const imageProps: any = useNextSanityImage(
         configuredSanityClient,
         data.image
@@ -33,9 +33,13 @@ const Product = ({ data }: props) => {
         dispatch(removeProduct(data.name))
     }
 
+    const onClickProduct = () => {
+        Router.push(data.url)
+    }
+
     return (
 
-        <Chakra.Grid p={[0, 5]} gridTemplateRows={['auto auto', 'auto']} gridTemplateColumns={[' 100px 1fr', ' 200px 1fr']} bg="white" mb={[10, 5]}>
+        <Chakra.Grid onClick={onClickProduct} p={[0, 5]} gridTemplateRows={['auto auto', 'auto']} gridTemplateColumns={[' 100px 1fr', ' 200px 1fr']} bg="white" mb={[10, 5]}>
 
             <Chakra.Center ref={elementRef} flexDirection="column">
 
@@ -46,7 +50,6 @@ const Product = ({ data }: props) => {
                 <Chakra.Box display={['block', 'none']}>
                     <Img  {...imageProps} loader={imageProps.loader} layout="intrinsic" width={dimensions?.contentBox.width ?? '100px'} height="100px" objectFit="fill" />
                 </Chakra.Box>
-
 
             </Chakra.Center>
 
@@ -67,7 +70,6 @@ const Product = ({ data }: props) => {
                 <Chakra.Center justifyContent={'start'} >
                     <Chakra.Text fontWeight={700} textTransform="capitalize" color="gray" fontSize={12}>Qty : {quantity}</Chakra.Text>
                 </Chakra.Center>
-
 
             </Chakra.Grid>
 

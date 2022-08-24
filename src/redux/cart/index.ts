@@ -5,6 +5,7 @@ export interface productDetails {
     image: any,
     details: string,
     quantity: number,
+    url: string,
 }
 
 
