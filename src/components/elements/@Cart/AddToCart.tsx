@@ -1,10 +1,12 @@
 import React from 'react'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import * as Chakra from "@chakra-ui/react"
 import { useAppDispatch, useAppSelector } from '../../../redux'
 import { addProduct, type productDetails } from '../../../redux/cart'
 
 const AddToCart = ({ product, quantity }: any) => {
+
+    const Router = useRouter()
 
     const { catalogId, productId } = Router.query
 
