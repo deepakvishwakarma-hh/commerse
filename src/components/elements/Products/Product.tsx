@@ -24,7 +24,7 @@ const Product = ({ data }: any) => {
     }
 
     return (
-        <Chakra.Box border="1px lightgray solid" _hover={{ bg: 'black', color: 'white' }} cursor="pointer" width={['150px', 'initial']} onClick={onClickHandler} ref={elementRef} overflow={'hidden'} p={[0, 2]} m={1}>
+        <Chakra.Box bg="white" _focus={{ opacity: .8 }} _hover={{ bg: 'black', color: 'white' }} cursor="pointer" onClick={onClickHandler} ref={elementRef} p={[2, 2]} >
             <Image  {...imageProps} loader={imageProps.loader} layout="intrinsic"
                 alt="none"
                 height={dimensions?.contentBox?.width ?? '200px'}
@@ -36,3 +36,5 @@ const Product = ({ data }: any) => {
     )
 }
 export default Product
+
+// border="1px lightgray solid"
