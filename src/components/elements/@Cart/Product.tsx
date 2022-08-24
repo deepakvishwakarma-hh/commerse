@@ -12,7 +12,6 @@ import { configuredSanityClient } from "../../../lib/client"
 import { removeProduct, type productDetails } from '../../../redux/cart'
 
 const Product = ({ data }: props) => {
-    console.log(data)
 
     const dispatch = useAppDispatch()
 
