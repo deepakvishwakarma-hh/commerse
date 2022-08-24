@@ -8,7 +8,6 @@ const CollectionAccordionItem = () => {
     const [catalogs, setCatalogs] = useState([])
 
     useEffect(() => {
-
         const fetchCatalogs = async () => {
             const queryCatalog = '*[_type == "catalog"]';
             const catalog = await client.fetch(queryCatalog);
@@ -21,9 +20,10 @@ const CollectionAccordionItem = () => {
 
     return (
         <Chakra.AccordionItem border="none">
+
             <Chakra.AccordionButton>
                 <Chakra.Flex fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
-                    <Chakra.Image src="/grid.svg" alt="" width={'20px'} height="20px" />
+                    <Chakra.Image src="/grid.svg" alt="image" width={'20px'} height="20px" />
                     <Chakra.Text pl={5}>
                         Collection
                     </Chakra.Text>
@@ -43,6 +43,7 @@ const CollectionAccordionItem = () => {
                         <Chakra.Text fontSize={13} fontWeight={500} color="gray" textTransform={'capitalize'} >{data.name}</Chakra.Text>
                     </Chakra.Flex>
                 })}
+
             </Chakra.AccordionPanel>
         </Chakra.AccordionItem>
     )

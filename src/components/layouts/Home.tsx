@@ -8,7 +8,7 @@ interface props {
 }
 
 const HomeLayout = ({ children }: props) => {
-    const btnRef = useRef()
+    const btnRef = useRef<HTMLButtonElement>(null)
     const { isOpen, onOpen, onClose } = Chakra.useDisclosure()
     return (
         <>

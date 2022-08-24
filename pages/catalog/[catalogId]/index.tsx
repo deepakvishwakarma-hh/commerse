@@ -11,8 +11,6 @@ import { HomeLayout as Layout } from "../../../src/components/layouts";
 
 const Catalog = ({ products, catalog }: props) => {
 
-    console.log(catalog)
-
     const router = useRouter()
     const catalogId = router.query.catalogId as string
 

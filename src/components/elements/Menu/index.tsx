@@ -1,10 +1,16 @@
-import Link from 'next/link'
-import InfoAccordionItem from './info'
-import AccountAccordionItem from "./account"
-import CollectionAccordionItem from "./collection"
-import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Accordion, Button, Box, Text, Flex, Image } from '@chakra-ui/react'
+interface props {
+    isOpen: boolean,
+    onClose: () => void,
+    btnRef: RefObject<HTMLButtonElement>
+}
 
-const Menu = ({ isOpen, onClose, btnRef }: any) => {
+import Link from 'next/link'
+import Img from "next/image"
+import { RefObject } from 'react'
+import CollectionAccordionItem from "./collection"
+import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Accordion, Text, Flex } from '@chakra-ui/react'
+
+const Menu = ({ isOpen, onClose, btnRef }: props) => {
     return (
         <Drawer isOpen={isOpen} placement='left' onClose={onClose} finalFocusRef={btnRef as any}>
             <DrawerOverlay />
@@ -13,33 +19,39 @@ const Menu = ({ isOpen, onClose, btnRef }: any) => {
                 <DrawerHeader my={3}></DrawerHeader>
                 <DrawerBody>
                     <Accordion allowToggle>
+
                         <CollectionAccordionItem />
-                        <AccountAccordionItem />
-                        <InfoAccordionItem />
+
+                        <Link href="/auth" passHref>
+                            <Flex _hover={{ bg: 'blackAlpha.50' }} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
+                                <Img loader={() => "/person.svg"} src="/person.svg" alt="none" width={'20px'} height="20px" />
+                                <Text pl={5}>
+                                    Account
+                                </Text>
+                            </Flex>
+                        </Link>
 
                         <Link href="/cart" passHref>
                             <Flex _hover={{ bg: 'blackAlpha.50' }} cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
-                                <Image src="/cart.svg" alt="none" width={'20px'} height="20px" />
+                                <Img loader={() => "/cart.svg"} src="/cart.svg" alt="none" width={'20px'} height="20px" />
                                 <Text pl={5}>
                                     Cart
                                 </Text>
                             </Flex>
                         </Link>
 
-
                         <Link href="/" passHref>
                             <Flex _hover={{ bg: 'blackAlpha.50' }} cursor={'pointer'} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
-                                <Image src="/home.svg" alt="none" width={'20px'} height="20px" />
-
+                                <Img loader={() => "/home.svg"} src="/home.svg" alt="none" width={'20px'} height="20px" />
                                 <Text pl={5}>
                                     Home
                                 </Text>
                             </Flex>
                         </Link>
 
-                        <Link href="/conatct" passHref>
+                        <Link href="/hey" passHref>
                             <Flex _hover={{ bg: 'blackAlpha.50' }} padding={'8px 16px'} fontWeight={500} flex='500' textAlign='left' alignItems={'center'}>
-                                <Image src="/contact.svg" alt="none" width={'20px'} height="20px" />
+                                <Img loader={() => "/contact.svg"} src="/contact.svg" alt="none" width={'20px'} height="20px" />
                                 <Text pl={5}>
                                     Contact
                                 </Text>
