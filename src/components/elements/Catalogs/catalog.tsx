@@ -1,5 +1,5 @@
+import Link from "next/link";
 import Image from "next/image";
-import Router from "next/router"
 import { useRef } from "react";
 import * as Chakra from "@chakra-ui/react"
 import { useNextSanityImage } from 'next-sanity-image';
@@ -15,19 +15,20 @@ const Catalog = ({ data }: any) => {
         data.image
     );
 
-    const onClickHandler = () => {
-        Router.push(`/catalog/${data.slug.current}`)
-    }
 
     return (
-        <Chakra.Box maxW="250px" _hover={{ bg: 'black', color: 'white' }} cursor="pointer" width={['150px', 'initial']} onClick={onClickHandler} ref={elementRef} overflow={'hidden'} p={2} bg='white' m={1}>
-            <Image  {...imageProps} loader={imageProps.loader} layout="intrinsic"
-                alt="none"
-                height={dimensions?.contentBox?.width ?? '200px'}
-                width={dimensions?.contentBox?.width ?? '200px'}
-            />
-            <Chakra.Text fontWeight={500} textTransform={'capitalize'}>{data.name}</Chakra.Text>
-        </Chakra.Box>
+        <>
+            <Link passHref href={`/catalog/${data.slug.current}`}>
+                <Chakra.Box maxW="250px" cursor="pointer" width={['150px', 'initial']} ref={elementRef} overflow={'hidden'} p={2} bg='white' m={1}>
+                    <Image  {...imageProps} loader={imageProps.loader} layout="intrinsic"
+                        alt="none"
+                        height={dimensions?.contentBox?.width ?? '200px'}
+                        width={dimensions?.contentBox?.width ?? '200px'}
+                    />
+                    <Chakra.Text fontWeight={500} textTransform={'capitalize'}>{data.name}</Chakra.Text>
+                </Chakra.Box>
+            </Link>
+        </>
     )
 }
 export default Catalog 
