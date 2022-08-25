@@ -1,7 +1,8 @@
 type Cart = () => ReactElement
 import Link from "next/link"
-import { ReactElement } from "react"
 import * as Chakra from "@chakra-ui/react"
+import { ReactElement, useEffect } from "react"
+import usePersist from "../../src/redux/persist"
 import { useAppSelector } from "../../src/redux"
 import type { productDetails } from "../../src/redux/cart"
 import { Product } from "../../src/components/elements/@Cart"
@@ -9,7 +10,14 @@ import { HomeLayout as Layout } from "../../src/components/layouts"
 
 const Cart: Cart = () => {
 
-    const store = useAppSelector(store => store.cart)
+    const persist = usePersist()
+    const store = useAppSelector(store => store.cart.cart)
+
+
+    useEffect(() => {
+        persist.effectStore()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     if (store.length == 0) {
         return (

@@ -1,8 +1,9 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import store from "../src/redux"
 import { Provider } from 'react-redux'
-import store, { useAppSelector } from "../src/redux"
+import type { AppProps } from 'next/app'
+import { subscriberCallback } from "../src/redux/persist"
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 // TRANSFER
 const theme = extendTheme({
   fonts: {
@@ -11,7 +12,9 @@ const theme = extendTheme({
   }
 })
 
-
+if (typeof window !== undefined) {
+  store.subscribe(subscriberCallback)
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

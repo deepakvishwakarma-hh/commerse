@@ -1,22 +1,28 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import * as Chakra from "@chakra-ui/react"
+import usePersist from '../../../redux/persist'
 import { useAppDispatch, useAppSelector } from '../../../redux'
 import { addProduct, type productDetails } from '../../../redux/cart'
 
 const AddToCart = ({ product, quantity }: any) => {
 
     const Router = useRouter()
-
-    const { catalogId, productId } = Router.query
-
-    const store = useAppSelector(store => store.cart)
-    const dispatch = useAppDispatch()
-
+    const persist = usePersist()
     const toast = Chakra.useToast()
+    const dispatch = useAppDispatch()
+    const { catalogId, productId } = Router.query
+    const store = useAppSelector(store => store.cart)
+
+    React.useEffect(() => {
+        if (typeof window !== undefined) {
+            persist.effectStore()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const Cart = () => {
-        const presentProductNames = store.map((value: productDetails) => value.name)
+        const presentProductNames = store.cart.map((value: productDetails) => value.name)
         if (presentProductNames.includes(product.name)) {
             toast({
                 duration: 3000,
