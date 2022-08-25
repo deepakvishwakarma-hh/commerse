@@ -7,7 +7,7 @@ const Footer = () => {
         <Chakra.Flex p={5} flexDir={['column', 'row', 'row', 'row']}>
             <Chakra.Flex flex={1} flexDirection={'column'}>
                 <Chakra.Box my={2} pl={5}>
-                    <Chakra.Heading fontSize={17} py={2} as="h5" textTransform={'uppercase'}>Contact </Chakra.Heading>
+                    <Chakra.Heading fontSize={17} py={2} as="h5" textTransform={'capitalize'}>Contact </Chakra.Heading>
                     <Chakra.Link color="gray" href="tel:8461833731">
                         +918461833731
                     </Chakra.Link> <br />
@@ -17,7 +17,7 @@ const Footer = () => {
                 </Chakra.Box>
 
                 <Chakra.Box my={2} pl={5}>
-                    <Chakra.Heading fontSize={17} py={2} as="h5" textTransform={'uppercase'}>Information</Chakra.Heading>
+                    <Chakra.Heading fontSize={17} py={2} as="h5" textTransform={'capitalize'}>Information</Chakra.Heading>
                     <Link href="/auth" passHref>
                         <Chakra.Text _hover={{ textDecoration: 'underline' }} cursor="pointer" fontWeight={500} textTransform="capitalize" color={'gray'} my={1} > Login</Chakra.Text>
                     </Link>
