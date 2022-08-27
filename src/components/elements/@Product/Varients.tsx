@@ -1,26 +1,26 @@
 interface props {
-    varients: varients[]
+    varients: any[],
+    varientIndex: number,
+    setVarientIndex: Dispatch<SetStateAction<number>>
 }
-import Link from "next/link"
-import { useRouter } from "next/router"
+
 import * as Chakra from "@chakra-ui/react"
+import { Dispatch, SetStateAction } from "react"
 import { urlFor } from "../../../lib/client"
-import { type varients } from "../../../../pages/catalog/[catalogId]/[productId]"
 const Varients = (props: props) => {
-    const router = useRouter()
+
     return (
         <Chakra.Flex>
             {props.varients.map((item, index) => {
-                return (
-                    <Link href={{
-                        pathname: `/catalog/[catalogId]/${item.slug.current}`,
-                        query: { catalogId: router.query.catalogId },
-                    }} replace passHref key={index}>
-                        <Chakra.Flex cursor={'pointer'} mr={1} flexDir={'column'} >
-                            <Chakra.Image border="2px whitesmoke solid" objectFit={'contain'} w="100px" h="100px" maxW="100px" maxH="100px" src={urlFor(item.image) as any}></Chakra.Image>
 
-                        </Chakra.Flex>
-                    </Link>
+                const onClick = () => {
+                    props.setVarientIndex(index)
+                }
+
+                return (
+                    <Chakra.Flex outline={index == props.varientIndex ? '2px blue solid' : 'none'} onClick={onClick} key={index} cursor={'pointer'} mr={1} flexDir={'column'} >
+                        <Chakra.Image border="2px whitesmoke solid" objectFit={'contain'} w="100px" h="100px" maxW="100px" maxH="100px" src={urlFor(item.image[0]) as any}></Chakra.Image>
+                    </Chakra.Flex>
                 )
             })}
         </Chakra.Flex >

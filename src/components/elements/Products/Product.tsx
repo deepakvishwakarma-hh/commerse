@@ -12,7 +12,7 @@ const Product = ({ data }: any) => {
 
     const imageProps: any = useNextSanityImage(
         configuredSanityClient,
-        data.image[0]
+        data.varients[0].image[0]
     );
 
     const cropText = (str: string, length: number) => {
