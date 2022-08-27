@@ -20,9 +20,10 @@ const Image = ({ Product }: props) => {
     );
 
     return (
-        <Chakra.Grid bg="blackAlpha.100" width={'100%'} gridTemplateRows="500px auto" px={[0, 10]}>
+        <Chakra.Grid pos="sticky" top={'70px'} width={'100%'} gridTemplateRows="500px auto" px={[0, 10]}>
 
-            <Img  {...imageProps} loader={imageProps.loader} layout="intrinsic" width="100%" height="100%" objectFit="contain" />
+            <Chakra.Image w="100%" h="500px" objectFit={'contain'} src={urlFor(Product.image[index]) as any}>
+            </Chakra.Image>
 
             {Product.image.length !== 1 && <Chakra.Flex overflowX={'auto'} p={2} bg="blackAlpha.100" alignItems={'center'} justifyContent="center">
 

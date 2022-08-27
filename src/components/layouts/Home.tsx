@@ -21,7 +21,7 @@ const HomeLayout = ({ children }: props) => {
     const { isOpen, onOpen, onClose } = Chakra.useDisclosure()
 
     return (
-        <>
+        <Chakra.Box pos="fixed" w="100%" h="100%" overflow={'auto'} >
             <Navigation {...{ onOpen, btnRef }} />
 
             <Suspense fallback={'loading...'}>
@@ -35,7 +35,7 @@ const HomeLayout = ({ children }: props) => {
             <Suspense fallback={'loading...'}>
                 <FooterDynamic />
             </Suspense>
-        </>
+        </Chakra.Box >
     )
 }
 export default HomeLayout

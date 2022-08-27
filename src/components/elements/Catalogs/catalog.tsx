@@ -6,7 +6,6 @@ import { useNextSanityImage } from 'next-sanity-image';
 import { configuredSanityClient } from "../../../lib/client"
 
 const Catalog = ({ data }: any) => {
-
     const elementRef = useRef(null)
     const dimensions = Chakra.useDimensions(elementRef)
 
@@ -24,6 +23,7 @@ const Catalog = ({ data }: any) => {
                         alt="none"
                         height={dimensions?.contentBox?.width ?? '200px'}
                         width={dimensions?.contentBox?.width ?? '200px'}
+                        objectPosition="center"
                     />
                     <Chakra.Text fontWeight={500} textTransform={'capitalize'}>{data.name}</Chakra.Text>
                 </Chakra.Box>

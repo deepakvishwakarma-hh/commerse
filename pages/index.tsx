@@ -1,5 +1,9 @@
+interface catalog {
+  name: string,
+
+}
+
 interface props {
-  products: any,
   catalog: any[]
 }
 import Head from "next/head"
@@ -9,6 +13,10 @@ import { HomeLayout as Body } from "../src/components/layouts"
 import Catalog from "../src/components/elements/Catalogs/catalog"
 
 const Home = ({ catalog }: props) => {
+
+
+  console.log(catalog)
+
   return (
     <>
       <Head>
@@ -31,7 +39,11 @@ const Home = ({ catalog }: props) => {
 }
 
 export const getStaticProps = async () => {
-  const query = '*[_type == "catalog"]';
+
+  // const query = '*[_type == "catalog"]{name,slug,"imageUrl": image.asset->url }'; 
+
+
+  const query = '*[_type == "catalog"]{name,slug,image}';
   const catalog = await client.fetch(query);
   return {
     props: { catalog }
