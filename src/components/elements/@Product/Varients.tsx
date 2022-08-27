@@ -16,9 +16,9 @@ const Varients = (props: props) => {
                         pathname: `/catalog/[catalogId]/${item.slug.current}`,
                         query: { catalogId: router.query.catalogId },
                     }} replace passHref key={index}>
-                        <Chakra.Flex cursor={'pointer'} border="1px whitesmoke solid" mr={1} flexDir={'column'} >
-                            <Chakra.Image objectFit={'contain'} w="100px" h="100px" maxW="100px" maxH="100px" src={urlFor(item.image) as any}></Chakra.Image>
-                            <Chakra.Text textTransform={'capitalize'} fontWeight={'bold'} textAlign={'center'}>{item.varient}</Chakra.Text>
+                        <Chakra.Flex cursor={'pointer'} mr={1} flexDir={'column'} >
+                            <Chakra.Image border="2px whitesmoke solid" objectFit={'contain'} w="100px" h="100px" maxW="100px" maxH="100px" src={urlFor(item.image) as any}></Chakra.Image>
+
                         </Chakra.Flex>
                     </Link>
                 )

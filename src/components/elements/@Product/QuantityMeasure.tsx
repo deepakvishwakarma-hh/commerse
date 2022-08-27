@@ -23,9 +23,9 @@ const QuantityMeasure = ({ setQuantity, quantity, full }: props) => {
 
     return (
         <Chakra.Flex borderRadius={'0'} alignItems={'center'} maxW={full ? 'initial' : "300px"}>
-            <Chakra.Button fontSize={20} bg="none" borderY={"lightgray 2px solid !important"} borderLeft="lightgray 2px solid !important" borderRadius={'0'} onClick={QuantityUp}>+</Chakra.Button>
-            <Chakra.Input border="lightgray 2px solid !important " borderRadius={'0'} onChange={onChange} value={quantity} type='number' />
-            <Chakra.Button fontSize={20} bg="none" borderY={"lightgray 2px solid !important"} borderRight="lightgray 2px solid !important" borderRadius={'0'} onClick={QuantityDown}>-</Chakra.Button>
+            <Chakra.Button bg="whitesmoke" fontSize={20} borderRadius={'0'} onClick={QuantityDown}>-</Chakra.Button>
+            <Chakra.Input border="whitesmoke 2px solid !important " borderRadius={'0'} onChange={onChange} value={quantity} type='number' />
+            <Chakra.Button bg="whitesmoke" fontSize={20} borderRadius={'0'} onClick={QuantityUp}>+</Chakra.Button>
         </Chakra.Flex >
     )
 }

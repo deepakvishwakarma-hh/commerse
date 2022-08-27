@@ -49,7 +49,7 @@ const AddToCart = ({ product, quantity }: any) => {
 
     }
     return (
-        <Chakra.Button isDisabled={isNaN(quantity)} _hover={{ opacity: .8 }} onClick={Cart} px={10} mx={2} bg="#0070f3" color="white">Add {!isNaN(quantity) && quantity} to cart</Chakra.Button>
+        <Chakra.Button isDisabled={isNaN(quantity)} _hover={{ opacity: .8 }} onClick={Cart} px={10} mx={2} bg="#0070f3" color="white">Add to cart</Chakra.Button>
     )
 }
 

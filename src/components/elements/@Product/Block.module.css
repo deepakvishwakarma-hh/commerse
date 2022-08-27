@@ -1,6 +1,7 @@
 .block {
-    border  : 2px rgba(128, 128, 128, 0.096) solid;
     padding:  0 1rem ;
+    border-left: 2px lightgray solid;
+
 }   
 
 .block h1{

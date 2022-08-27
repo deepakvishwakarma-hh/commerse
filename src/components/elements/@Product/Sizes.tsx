@@ -7,7 +7,7 @@ interface props {
 const Sizes = (props: props) => {
     return (
         <Chakra.Flex>
-            {props.sizes.map((item => <Chakra.Text key={item.name} fontWeight={800} border="1px lightgray solid" p={2} mr={1}>{item.name}</Chakra.Text>))}
+            {props.sizes.map((item => <Chakra.Text key={item.name} fontWeight={800} border="2px whitesmoke solid" p={2} mr={1}>{item.name}</Chakra.Text>))}
         </Chakra.Flex>
     )
 }

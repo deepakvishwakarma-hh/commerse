@@ -2,11 +2,10 @@ const frequentlyUsedStylings = {
     categories: {
         wrapper: { mb: 5 },
         title: {
-            mb: 3,
+            mb: 2,
             fontSize: 15,
             fontWeight: 600,
             color: "gray",
-            fontFamily: 'monospace',
         },
     }
 }
@@ -75,31 +74,27 @@ const Page = (props: props) => {
                     <Chakra.Box px={[5, 10, 15, 15]} py={10} >
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Name </Chakra.Text>
-                            <Chakra.Heading fontSize={30}>{product.name}</Chakra.Heading>
+                            <Chakra.Heading textTransform={'capitalize'} fontSize={30}>{product.name}</Chakra.Heading>
                         </Chakra.Box>
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Brief Details </Chakra.Text>
-                            <Chakra.Text>{product.briefDetail} </Chakra.Text>
+                            <Chakra.Text color="gray" fontWeight={600}>{product.briefDetail} </Chakra.Text>
                         </Chakra.Box>
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Huge Details </Chakra.Text>
                             <Block blocks={product.hugeDetails} />
                         </Chakra.Box>
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Pricing </Chakra.Text>
-                            <Chakra.Text fontSize={20} fontWeight={800}  > ₹ {product.price} </Chakra.Text>
+                            <Chakra.Text fontSize={23} fontWeight={800}  > ₹ {product.price}  </Chakra.Text>
                         </Chakra.Box>
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Sizes </Chakra.Text>
+                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Sizes </Chakra.Text>
                             <Sizes sizes={product.sizes} />
                         </Chakra.Box>
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Varients </Chakra.Text>
+                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Varients </Chakra.Text>
                             <Varients varients={varients} />
                         </Chakra.Box>
 
@@ -108,9 +103,9 @@ const Page = (props: props) => {
                             <QuantityMeasure {...{ quantity, setQuantity }} />
                         </Chakra.Box>
 
-                        <Chakra.Flex flexDir={['column', 'row']}>
+                        <Chakra.Flex flexWrap={'wrap'} >
                             <AddToCart product={product} quantity={quantity} />
-                            <Chakra.Button my={[2, 0]} px={10} mx={2} border=" 2px solid #0070f3" color="#0070f3"  >Buy Now</Chakra.Button>
+                            <Chakra.Button m={2} px={10} border=" 2px solid #0070f3" color="#0070f3"  >Buy Now</Chakra.Button>
                         </Chakra.Flex>
 
                     </Chakra.Box>
