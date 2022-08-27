@@ -1,3 +1,4 @@
+import { string } from "prop-types";
 
 export default {
     name: 'product',
@@ -5,28 +6,9 @@ export default {
     type: 'document',
     fields: [
         {
-            name: 'image',
-            title: 'Image',
-            type: 'array',
-            of: [{
-                type: 'image',
-                options: {
-                    hotspot: true
-                },
-            }],
-            options: {
-                hotspot: true,
-            }
-        },
-        {
             name: 'name',
             title: 'Name',
             type: 'string',
-        },
-        {
-            title: 'Varient',
-            name: 'varient',
-            type: 'string'
         },
         {
             name: 'slug',
@@ -69,6 +51,36 @@ export default {
                 options: { disableNew: true }
             }]
         },
+        {
+            name: 'varients',
+            title: 'Varients',
+            type: 'array',
+            of: [
+                {
+                    name: 'varient',
+                    title: 'Varient',
+                    type: "object",
+                    fields: [
+                        {
+                            name: "name",
+                            title: "Name",
+                            type: "string"
+                        },
+                        {
+                            name: 'image',
+                            title: 'Image',
+                            type: 'array',
+                            of: [{
+                                type: 'image',
+                                options: {
+                                    hotspot: true
+                                },
+                            }],
+                        }
+                    ]
+                }
+            ]
+        }
 
     ]
 }
