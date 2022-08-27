@@ -76,7 +76,7 @@ const Page = (props: props) => {
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Name </Chakra.Text>
-                            <Chakra.Heading fontSize={30}> {Product.name}</Chakra.Heading>
+                            <Chakra.Heading fontSize={30}>{product.name}</Chakra.Heading>
                         </Chakra.Box>
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
