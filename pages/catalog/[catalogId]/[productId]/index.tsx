@@ -40,7 +40,6 @@ const Page = (props: props) => {
     const { product } = props
     const [quantity, setQuantity] = useState<number>(1)
     const [varientIndex, setVarientIndex] = useState<number>(0)
-    const varientImages = product.varients[varientIndex]
 
     if (props.product == null) {
         return (
@@ -49,7 +48,7 @@ const Page = (props: props) => {
             </Layout>
         )
     }
-
+    const varientImages = product?.varients[varientIndex]
     const title = `${product.name} | Red Kart `
 
     return (
@@ -81,8 +80,6 @@ const Page = (props: props) => {
                             <Chakra.Text color="gray" fontWeight={600}>{product.briefDetail} </Chakra.Text>
                         </Chakra.Box>
 
-
-
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Block blocks={product.hugeDetails} />
                         </Chakra.Box>
@@ -95,7 +92,6 @@ const Page = (props: props) => {
                             <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Sizes </Chakra.Text>
                             <Sizes sizes={product.sizes} />
                         </Chakra.Box>
-
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Quantity </Chakra.Text>
@@ -113,6 +109,9 @@ const Page = (props: props) => {
             </Layout ></>
     )
 }
+
+
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     context.res.setHeader(
