@@ -33,7 +33,7 @@ import { client } from "../../../../src/lib/client"
 import { NotFound } from '../../../../src/components/elements'
 import { AddToCart } from "../../../../src/components/elements/@Cart"
 import { HomeLayout as Layout } from '../../../../src/components/layouts'
-import { Image as ImageComp, Block, QuantityMeasure, Sizes, Varients, ImageSlider } from '../../../../src/components/elements/@Product'
+import { Image as ImageComp, Block, QuantityMeasure, Sizes, Varients } from '../../../../src/components/elements/@Product'
 
 const Page = (props: props) => {
 
@@ -41,7 +41,6 @@ const Page = (props: props) => {
     const [quantity, setQuantity] = useState<number>(1)
     const [varientIndex, setVarientIndex] = useState<number>(0)
     const varientImages = product.varients[varientIndex]
-    const [isBiggerThan991px] = Chakra.useMediaQuery('(max-width: 500px)')
 
     if (props.product == null) {
         return (
@@ -64,8 +63,7 @@ const Page = (props: props) => {
                 <Chakra.Grid borderBottom={'2px whitesmoke solid'} mb={[20, 0]} w="100%" gridTemplateColumns={['100vw', '100vw', "100vw", "1fr 1fr", "1fr 2fr"]} >
 
                     <Chakra.Box>
-
-                        {isBiggerThan991px ? <ImageSlider images={varientImages} /> : <ImageComp images={varientImages} />}
+                        <ImageComp images={varientImages} />
                     </Chakra.Box>
 
                     <Chakra.Box px={[5, 10, 15, 15]} py={10} >
