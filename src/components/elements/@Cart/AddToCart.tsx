@@ -1,50 +1,62 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import { FunctionComponent } from 'react'
 import * as Chakra from "@chakra-ui/react"
-import usePersist from '../../../redux/persist'
-import { useAppDispatch, useAppSelector } from '../../../redux'
-import { addProduct, type productDetails } from '../../../redux/cart'
+import { _useContext } from '../../../context'
+import { type product } from '../../../../pages/catalog/[catalogId]/[productId]'
 
-const AddToCart = ({ product, quantity }: any) => {
+interface props {
+    product: product
+}
+
+const AddToCart: FunctionComponent<props> = ({ product }) => {
+
+    const store = _useContext()
+    const { quantity } = store.product
+    const { briefDetail, price, name } = product
 
     const Router = useRouter()
-    const persist = usePersist()
     const toast = Chakra.useToast()
-    const dispatch = useAppDispatch()
     const { catalogId, productId } = Router.query
-    const store = useAppSelector(store => store.cart)
+
+    const alreadyProductInCartToast = () => toast({
+        duration: 3000,
+        isClosable: true,
+        position: 'bottom-left',
+        render: () => (<Chakra.Box bg="red.100" p={3} borderRadius={5} boxShadow={'md'} fontWeight={700}>👎 Product already in cart.</Chakra.Box>)
+    })
+
+    const productAddedToCart = () => toast({
+        duration: 3000,
+        isClosable: true,
+        position: 'bottom-left',
+        render: () => (<Chakra.Box bg="whatsapp.200" p={3} borderRadius={5} boxShadow={'md'} fontWeight={700}>👍 Product added to Cart</Chakra.Box>)
+    })
 
     React.useEffect(() => {
         if (typeof window !== undefined) {
-            persist.effectStore()
+            // persist.effectStore()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const Cart = () => {
-        const presentProductNames = store.cart.map((value: productDetails) => value.name)
+        const presentProductNames = store.cart.products.map((value: any) => value.name)
+
         if (presentProductNames.includes(product.name)) {
-            toast({
-                duration: 3000,
-                isClosable: true,
-                position: 'bottom-left',
-                render: () => (<Chakra.Box bg="red.100" p={3} borderRadius={5} boxShadow={'md'} fontWeight={700}>👎 Product already in cart.</Chakra.Box>)
-            })
+            alreadyProductInCartToast()
+
         } else {
-            dispatch(addProduct({
-                name: product.name,
-                price: product.price,
-                image: product.image[0],
-                details: product.details,
-                url: `catalog/${catalogId}/${productId}`,
-                quantity
-            }))
-            toast({
-                duration: 3000,
-                isClosable: true,
-                position: 'bottom-left',
-                render: () => (<Chakra.Box bg="whatsapp.200" p={3} borderRadius={5} boxShadow={'md'} fontWeight={700}>👍 Product added to Cart</Chakra.Box>)
+            store.reducers?.cart.pushProduct({
+                type: 'addProduct', payload: {
+                    ...store.product,
+                    url: `catalog/${catalogId}/${productId}`,
+                    briefDetail,
+                    price,
+                    name
+                }
             })
+            productAddedToCart()
         }
 
     }

@@ -1,25 +1,16 @@
 type Cart = () => ReactElement
 import Link from "next/link"
 import * as Chakra from "@chakra-ui/react"
+import { _useContext } from "../../src/context"
 import { ReactElement, useEffect } from "react"
-import usePersist from "../../src/redux/persist"
-import { useAppSelector } from "../../src/redux"
-import type { productDetails } from "../../src/redux/cart"
 import { Product } from "../../src/components/elements/@Cart"
 import { HomeLayout as Layout } from "../../src/components/layouts"
 
 const Cart: Cart = () => {
 
-    const persist = usePersist()
-    const store = useAppSelector(store => store.cart.cart)
+    const store = _useContext()
 
-
-    useEffect(() => {
-        persist.effectStore()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    if (store.length == 0) {
+    if (store.cart.products.length == 0) {
         return (
             <Layout>
                 <Chakra.Center flexDirection={'column'} h="300px" bg="purple.100">
@@ -39,7 +30,7 @@ const Cart: Cart = () => {
             <Chakra.Flex bg="whitesmoke" py={[5]} px={[3, 10]}>
                 <Chakra.Flex flex={2} flexDir={'column'}>
 
-                    {store.map((value: productDetails, index: number) => {
+                    {store.cart.products?.map((value: any, index: number) => {
                         return (
                             <Product key={index} data={value} />
                         )

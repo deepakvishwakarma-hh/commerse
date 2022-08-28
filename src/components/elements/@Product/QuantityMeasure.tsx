@@ -1,23 +1,26 @@
-import * as  Chakra from "@chakra-ui/react"
-import { Dispatch, SetStateAction } from "react"
 interface props {
-    setQuantity: Dispatch<SetStateAction<number>>, quantity: number, full?: boolean
+    setQuantity: Dispatch<SetStateAction<number>>,
+    quantity: number,
+    full?: boolean
 }
+import * as  Chakra from "@chakra-ui/react"
+import { ChangeEvent, Dispatch, FunctionComponent, SetStateAction } from "react"
 
+const QuantityMeasure: FunctionComponent<props> = ({ setQuantity, quantity, full }) => {
 
-const QuantityMeasure = ({ setQuantity, quantity, full }: props) => {
-
-    const onChange = (event: any) => {
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (parseInt(event.target.value) > 0) {
             setQuantity(parseInt(event.target.value))
         }
     }
+
     const QuantityUp = () => {
-        setQuantity((prev) => prev + 1)
+        setQuantity(quantity + 1)
     }
+
     const QuantityDown = () => {
         if (quantity > 1) {
-            setQuantity((prev) => prev - 1)
+            setQuantity(quantity - 1)
         }
     }
 

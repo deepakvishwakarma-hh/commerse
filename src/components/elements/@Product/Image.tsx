@@ -1,41 +1,37 @@
 interface props {
-    images: any
+    varient: {
+        image: SanityImageObject[]
+    }
 }
 
-import Img from 'next/image';
 import { useState } from "react"
-import ImageChild from "./imageChild"
 import * as Chakra from "@chakra-ui/react"
-import { useNextSanityImage } from 'next-sanity-image'
-import { urlFor, configuredSanityClient } from "../../../lib/client"
+import { urlFor } from "../../../lib/client"
+import { type FunctionComponent } from "react"
+import { type SanityImageObject } from "@sanity/image-url/lib/types/types"
 
+const ImageComp: FunctionComponent<props> = (props) => {
 
-const Image = ({ images }: props) => {
+    const [index, setIndex] = useState(0)
 
-    const [index, setIndex] = useState<number>(0)
+    const isEmptyOptions = props.varient.image.length !== 0
 
-    const imageProps: any = useNextSanityImage(
-        configuredSanityClient,
-        images.image[index]
-    );
+    const list = props.varient.image.map((item, i) => (
+        <Chakra.Image onMouseEnter={() => { setIndex(i) }} maxH={'100px'} src={urlFor(item) as any} key={i}></Chakra.Image>
+    ))
 
     return (
         <Chakra.Grid pos="sticky" top={'70px'} width={'100%'} gridTemplateRows="500px auto" px={[0, 10]}>
 
-            <Chakra.Image w="100%" h="500px" objectFit={'contain'} src={urlFor(images.image[index]) as any}>
-            </Chakra.Image>
+            <Chakra.Image w="100%" h="500px" objectFit={'contain'} src={urlFor(props.varient.image[index]) as any} />
 
-            {images.image.length !== 1 && <Chakra.Flex overflowX={'auto'} p={2} bg="blackAlpha.100" alignItems={'center'} justifyContent="center">
+            {isEmptyOptions && <Chakra.Flex overflowX={'auto'} p={2} bg="blackAlpha.100" alignItems={'center'} justifyContent="center">{list}</Chakra.Flex>}
 
-                {images.image.map((imageData: any, i: number) => <ImageChild src={urlFor(imageData)} i={i} key={i} setIndex={setIndex} />)}
-
-            </Chakra.Flex>}
         </Chakra.Grid >
     )
 }
 
-
-export default Image
+export default ImageComp
 
 
 

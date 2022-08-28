@@ -1,8 +1,7 @@
 .block {
     padding:  0 1rem ;
     border-left: 2px lightgray solid;
-
-}   
+}  
 
 .block h1{
     font-size: 3rem;
@@ -48,12 +47,11 @@
     padding-left: 2rem;
 }
    
-
-
 .block a {
     color : blue;
     text-decoration: underline;
 }
+
 .block code {
     font-family:  monospace !important;
     background: rgba(166, 88, 255, 0.192);

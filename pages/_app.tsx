@@ -1,10 +1,8 @@
 import '../styles/globals.css'
-import store from "../src/redux"
-import { Provider } from 'react-redux'
+import Provider from "../src/context"
 import type { AppProps } from 'next/app'
-import { subscriberCallback } from "../src/redux/persist"
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-// TRANSFER
+
 const theme = extendTheme({
   fonts: {
     body: `'Nunito', sans-serif`,
@@ -12,13 +10,10 @@ const theme = extendTheme({
   }
 })
 
-if (typeof window !== undefined) {
-  store.subscribe(subscriberCallback)
-}
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store} >
+    <Provider>
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
