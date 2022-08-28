@@ -10,7 +10,7 @@ import { urlFor } from "../../../lib/client"
 const Varients = (props: props) => {
 
     return (
-        <Chakra.Flex>
+        <Chakra.Flex flexWrap="wrap">
             {props.varients.map((item, index) => {
 
                 const onClick = () => {
