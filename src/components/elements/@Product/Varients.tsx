@@ -18,7 +18,7 @@ const Varients = (props: props) => {
                 }
 
                 return (
-                    <Chakra.Flex outline={index == props.varientIndex ? '2px blue solid' : 'none'} onClick={onClick} key={index} cursor={'pointer'} mr={1} flexDir={'column'} >
+                    <Chakra.Flex  outline={index == props.varientIndex ? '2px blue solid' : 'none'} onClick={onClick} key={index} cursor={'pointer'} mr={1} mb={1} flexDir={'column'} >
                         <Chakra.Image border="2px whitesmoke solid" objectFit={'contain'} w="100px" h="100px" maxW="100px" maxH="100px" src={urlFor(item.image[0]) as any}></Chakra.Image>
                     </Chakra.Flex>
                 )
