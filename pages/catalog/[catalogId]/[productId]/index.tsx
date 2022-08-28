@@ -73,8 +73,15 @@ const Page = (props: props) => {
                         </Chakra.Box>
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
+                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Product Varients </Chakra.Text>
+                            <Varients varients={product.varients} varientIndex={varientIndex} setVarientIndex={setVarientIndex} />
+                        </Chakra.Box>
+
+                        <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Chakra.Text color="gray" fontWeight={600}>{product.briefDetail} </Chakra.Text>
                         </Chakra.Box>
+
+
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Block blocks={product.hugeDetails} />
@@ -88,10 +95,7 @@ const Page = (props: props) => {
                             <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Sizes </Chakra.Text>
                             <Sizes sizes={product.sizes} />
                         </Chakra.Box>
-                        <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Varients </Chakra.Text>
-                            <Varients varients={product.varients} varientIndex={varientIndex} setVarientIndex={setVarientIndex} />
-                        </Chakra.Box>
+
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Quantity </Chakra.Text>

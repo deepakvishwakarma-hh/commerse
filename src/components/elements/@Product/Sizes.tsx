@@ -6,9 +6,9 @@ interface props {
 
 const Sizes = (props: props) => {
     return (
-        <Chakra.Flex>
-            {props.sizes.map((item => <Chakra.Text key={item.name} fontWeight={800} border="2px whitesmoke solid" p={2} mr={1}>{item.name}</Chakra.Text>))}
-        </Chakra.Flex>
+        <Chakra.Select maxW="300px" defaultValue={props.sizes[0].name} >
+            {props.sizes.map((item => <option value={item.name} key={item.name}>{item.name}</option>))}
+        </Chakra.Select>
     )
 }
 export default Sizes
