@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import Provider from "../src/context"
 import type { AppProps } from 'next/app'
+import ErrorBoundary from '../src/error-boundry'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
@@ -13,11 +14,13 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider>
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </Provider>
+    <ErrorBoundary>
+      <Provider>
+        <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </Provider>
+    </ErrorBoundary>
   )
 }
 
