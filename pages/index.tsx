@@ -11,17 +11,14 @@ interface props {
 
 import Head from "next/head"
 import { NextPage } from "next"
+import { Suspense } from "react"
+import dynamic from 'next/dynamic'
 import { client } from "../src/lib/client"
 import { Flex, Box, Heading } from "@chakra-ui/react"
-import { HomeLayout as Body } from "../src/components/layouts"
-import Catalog from "../src/components/elements/Catalogs/catalog"
 import { type SanityImageObject } from "@sanity/image-url/lib/types/types"
 
-
-import dynamic from 'next/dynamic'
-
-const DynamicLayout = dynamic(() => import('../src/components/layouts/Home'),)
-
+const DynamicLayout = dynamic(() => import('../src/components/layouts/Home'))
+const DynamicCatalog = dynamic(() => import('../src/components/elements/Catalogs/catalog'), { suspense: true })
 
 const HomePage: NextPage<props> = ({ catalog }) => {
   return (
@@ -35,7 +32,9 @@ const HomePage: NextPage<props> = ({ catalog }) => {
           <Heading as="h1" py={20} textAlign='center'>  Categories </Heading>
           <Flex flexWrap={'wrap'} justifyContent="center">
             {catalog.map((item: any, index: number) => (
-              <Catalog key={index} data={item} />
+              <Suspense key={index} fallback={'loading'}>
+                <DynamicCatalog data={item} />
+              </Suspense>
             ))}
           </Flex>
         </Box>
