@@ -45,20 +45,13 @@ import { Image as ImageComp, Block, QuantityMeasure, Sizes, Varients } from '../
 
 const Page = (props: props) => {
 
-
     const store = _useContext();
-    const { product } = props;
-    const { quantity } = store.product;
-    const title = `${product.name} | Red Kart`;
-    const varientImages = product?.varients[store.product.varientIndex];
-
-    const setQuantity: any = (payload: number) => {
-        store.reducers?.product.reducer({ type: 'quantity', payload })
-    }
 
     useEffect(() => {
-        store.reducers?.product.reducer({ type: 'varient', payload: { ...product.varients[0] } })
-        store.reducers?.product.reducer({ type: 'size', payload: product.sizes[0].name })
+        if (props.product !== null) {
+            store.reducers?.product.reducer({ type: 'varient', payload: { ...product.varients[0] } })
+            store.reducers?.product.reducer({ type: 'size', payload: product.sizes[0].name })
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -68,6 +61,15 @@ const Page = (props: props) => {
                 <NotFound title='Product is Not Found' discription='invalid slug' />
             </Layout>
         )
+    }
+
+    // dependent upon product of props
+    const { product } = props;
+    const { quantity } = store.product;
+    const title = `${product.name} | Red Kart`;
+    const varientImages = product?.varients[store.product.varientIndex];
+    const setQuantity: any = (payload: number) => {
+        store.reducers?.product.reducer({ type: 'quantity', payload })
     }
 
     return (
