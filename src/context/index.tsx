@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode, useEffect } from "react";
 
 type product = {
     name: string,
@@ -13,7 +13,7 @@ type product = {
 type contextType = {
     cart: {
         products: product[],
-        T: boolean
+        isAnyReducerPerformed: boolean
     },
     product: {
         quantity: number,
@@ -37,7 +37,7 @@ type Props = {
 const contextDefaultValues: contextType = {
     cart: {
         products: [],
-        T: false
+        isAnyReducerPerformed: false
     },
     product: {
         quantity: 1,
@@ -55,13 +55,9 @@ export function _useContext() {
     return useContext(Context);
 }
 
-
-
-
 export default function Provider({ children }: Props) {
 
     const [cart, setCart] = useState<contextType['cart']>(contextDefaultValues.cart)
-
     const [product, setProduct] = useState<contextType['product']>(contextDefaultValues.product)
 
     const reducers: contextType['reducers'] = {
@@ -75,26 +71,42 @@ export default function Provider({ children }: Props) {
         cart: {
             pushProduct: (action) => {
                 setCart((prev: any) => {
-                    return { ...prev, products: [...prev.products, action.payload] }
+                    return { isAnyReducerPerformed: true, products: [...prev.products, action.payload] }
                 })
             },
             removeProduct: (action) => {
-
-
                 const filteredArr = cart.products.filter((item: any) => item.name !== action.payload)
-
-                setCart((prev: any) => {
-                    return { ...prev, products: filteredArr }
+                setCart(() => {
+                    return { isAnyReducerPerformed: true, products: filteredArr }
                 })
             }
         }
     }
 
     const value = {
-        cart,
-        product,
-        reducers
+        cart, product, reducers
     }
+
+    // Effect specially for state persistant
+    useEffect(() => {
+        const storage_name = 'persisted-cart-products'
+        // perfact condition to ger persisted state
+        if (cart.products.length == 0 && !cart.isAnyReducerPerformed) {
+            // validating presence of storage
+            if (localStorage.getItem(storage_name)) {
+                // get and store to cart>product
+                const persistedProducts = JSON.parse(localStorage.getItem(storage_name) as any)
+                setCart({ isAnyReducerPerformed: false, products: persistedProducts })
+            }
+
+        } else {
+            // store to storage(localstorage)
+            const storeGoingToBePersist = JSON.stringify(cart.products)
+            localStorage.setItem(storage_name, storeGoingToBePersist)
+        }
+
+    }, [cart])
+
     return (
         <Context.Provider value={value} >
             {children}
