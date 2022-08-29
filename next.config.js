@@ -5,7 +5,8 @@ const nextConfig = {
   images: {
     domains: ['cdn.sanity.io'],
     loader: 'custom'
-  }
+  },
+  experimental: { images: { allowFutureImage: true } }
 }
 
 module.exports = nextConfig

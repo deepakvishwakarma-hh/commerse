@@ -1,12 +1,11 @@
-type Cart = () => ReactElement
 import Link from "next/link"
+import { type NextPage } from "next"
 import * as Chakra from "@chakra-ui/react"
 import { _useContext } from "../../src/context"
-import { ReactElement, useEffect } from "react"
 import { Product } from "../../src/components/elements/@Cart"
 import { HomeLayout as Layout } from "../../src/components/layouts"
 
-const Cart: Cart = () => {
+const CartPage: NextPage = () => {
 
     const store = _useContext()
 
@@ -29,7 +28,6 @@ const Cart: Cart = () => {
         <Layout>
             <Chakra.Flex bg="whitesmoke" py={[5]} px={[3, 10]}>
                 <Chakra.Flex flex={2} flexDir={'column'}>
-
                     {store.cart.products?.map((value: any, index: number) => {
                         return (
                             <Product key={index} data={value} />
@@ -41,12 +39,12 @@ const Cart: Cart = () => {
                     </Chakra.Box>
 
                 </Chakra.Flex>
-                <Chakra.Flex display={['none', 'none', "flex"]} flex={1} h="200px" bg="cyan.100" flexDir={'column'}>
-                    result goes here....
+
+                <Chakra.Flex display={['none', 'none', "flex"]} flex={1} h="200px" flexDir={'column'}>
                 </Chakra.Flex>
 
             </Chakra.Flex>
         </Layout>
     )
 }
-export default Cart
+export default CartPage

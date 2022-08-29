@@ -1,13 +1,12 @@
+interface props {
+    product: product
+}
 import React from 'react'
 import { useRouter } from 'next/router'
 import { FunctionComponent } from 'react'
 import * as Chakra from "@chakra-ui/react"
 import { _useContext } from '../../../context'
 import { type product } from '../../../../pages/catalog/[catalogId]/[productId]'
-
-interface props {
-    product: product
-}
 
 const AddToCart: FunctionComponent<props> = ({ product }) => {
 
@@ -32,13 +31,6 @@ const AddToCart: FunctionComponent<props> = ({ product }) => {
         position: 'bottom-left',
         render: () => (<Chakra.Box bg="whatsapp.200" p={3} borderRadius={5} boxShadow={'md'} fontWeight={700}>👍 Product added to Cart</Chakra.Box>)
     })
-
-    React.useEffect(() => {
-        if (typeof window !== undefined) {
-            // persist.effectStore()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     const Cart = () => {
         const presentProductNames = store.cart.products.map((value: any) => value.name)

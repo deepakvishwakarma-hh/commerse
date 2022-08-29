@@ -1,5 +1,5 @@
 interface props {
-    setQuantity: Dispatch<SetStateAction<number>>,
+    setQuantity: Dispatch<SetStateAction<number>> | any
     quantity: number,
     full?: boolean
 }

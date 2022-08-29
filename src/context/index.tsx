@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode, useEffect } from "react";
 
-type product = {
+export type product = {
     name: string,
     briefDetail: string,
     varient: any,
@@ -79,6 +79,19 @@ export default function Provider({ children }: Props) {
                 setCart(() => {
                     return { isAnyReducerPerformed: true, products: filteredArr }
                 })
+            }, updateProduct: (action) => {
+
+                const newArr = cart.products.map((value, index) => {
+                    if (value.name == action.payload.name) {
+                        return { ...value, quantity: action.payload.value }
+                    }
+                    return value
+                })
+
+                setCart((prev: any) => {
+                    return { ...prev, products: newArr }
+                })
+
             }
         }
     }
