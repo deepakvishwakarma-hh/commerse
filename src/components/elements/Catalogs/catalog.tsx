@@ -1,11 +1,15 @@
+interface props {
+    data: catalog
+}
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
 import * as Chakra from "@chakra-ui/react"
+import { FunctionComponent, useRef } from "react";
 import { useNextSanityImage } from 'next-sanity-image';
+import { type catalog } from "../../../../pages/index"
 import { configuredSanityClient } from "../../../lib/client"
 
-const Catalog = ({ data }: any) => {
+const Catalog: FunctionComponent<props> = ({ data }) => {
     const elementRef = useRef(null)
     const dimensions = Chakra.useDimensions(elementRef)
 
@@ -13,7 +17,6 @@ const Catalog = ({ data }: any) => {
         configuredSanityClient,
         data.image
     );
-
 
     return (
         <>

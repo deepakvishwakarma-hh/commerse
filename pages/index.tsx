@@ -1,20 +1,22 @@
-interface catalog {
+export interface catalog {
+  slug: any,
   name: string,
-
+  image: SanityImageObject
 }
 
 interface props {
-  catalog: any[]
+  catalog: catalog[]
 }
+
 import Head from "next/head"
+import { NextPage } from "next"
 import * as Chakra from '@chakra-ui/react'
 import { client } from "../src/lib/client"
 import { HomeLayout as Body } from "../src/components/layouts"
 import Catalog from "../src/components/elements/Catalogs/catalog"
+import { type SanityImageObject } from "@sanity/image-url/lib/types/types"
 
-const Home = ({ catalog }: props) => {
-
-
+const HomePage: NextPage<props> = ({ catalog }) => {
   console.log(catalog)
 
   return (
@@ -42,7 +44,6 @@ export const getStaticProps = async () => {
 
   // const query = '*[_type == "catalog"]{name,slug,"imageUrl": image.asset->url }'; 
 
-
   const query = '*[_type == "catalog"]{name,slug,image}';
   const catalog = await client.fetch(query);
   return {
@@ -50,4 +51,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default Home
+export default HomePage
