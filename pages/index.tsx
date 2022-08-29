@@ -17,6 +17,12 @@ import { HomeLayout as Body } from "../src/components/layouts"
 import Catalog from "../src/components/elements/Catalogs/catalog"
 import { type SanityImageObject } from "@sanity/image-url/lib/types/types"
 
+
+import dynamic from 'next/dynamic'
+
+const DynamicLayout = dynamic(() => import('../src/components/layouts/Home'),)
+
+
 const HomePage: NextPage<props> = ({ catalog }) => {
   return (
     <>
@@ -24,7 +30,7 @@ const HomePage: NextPage<props> = ({ catalog }) => {
         <title>RedKart - e-commerse</title>
         <meta name="description" content="local e-commerse website, best offers great deals" />
       </Head>
-      <Body>
+      <DynamicLayout>
         <Box px={[0, 10]} bg="whitesmoke" pb={10}>
           <Heading as="h1" py={20} textAlign='center'>  Categories </Heading>
           <Flex flexWrap={'wrap'} justifyContent="center">
@@ -33,7 +39,7 @@ const HomePage: NextPage<props> = ({ catalog }) => {
             ))}
           </Flex>
         </Box>
-      </Body>
+      </DynamicLayout>
 
     </>
   )
