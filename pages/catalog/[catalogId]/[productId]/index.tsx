@@ -45,7 +45,6 @@ import { Image as ImageComp, Block, QuantityMeasure, Sizes, Varients } from '../
 
 const Page = (props: props) => {
 
-    console.log(props.product)
 
     const store = _useContext();
     const { product } = props;
