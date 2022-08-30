@@ -25,7 +25,7 @@ export interface product {
     hugeDetails: any[]
     _updatedAt: string,
     briefDetail: string,
-    sizes: { name: string }[]
+    sizes: { name: string }[] | undefined
     slug: { _type: 'slug', current: string },
 }
 
@@ -50,7 +50,9 @@ const Page = (props: props) => {
     useEffect(() => {
         if (props.product !== null) {
             store.reducers?.product.reducer({ type: 'varient', payload: { ...product.varients[0] } })
-            store.reducers?.product.reducer({ type: 'size', payload: product.sizes[0].name })
+            if (product.sizes) {
+                store.reducers?.product.reducer({ type: 'size', payload: product.sizes[0].name })
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -91,10 +93,10 @@ const Page = (props: props) => {
                             <Chakra.Heading textTransform={'capitalize'} fontSize={30}>{product.name}</Chakra.Heading>
                         </Chakra.Box>
 
-                        <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
+                        {(product.varients.length > 1) && <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Product Varients </Chakra.Text>
                             <Varients varients={product.varients} />
-                        </Chakra.Box>
+                        </Chakra.Box>}
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Chakra.Text color="gray" fontWeight={600}>{product.briefDetail} </Chakra.Text>
@@ -108,10 +110,12 @@ const Page = (props: props) => {
                             <Chakra.Text fontSize={23} fontWeight={800}  > ₹ {product.price}  </Chakra.Text>
                         </Chakra.Box>
 
-                        <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
-                            <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Sizes </Chakra.Text>
-                            <Sizes sizes={product.sizes} />
-                        </Chakra.Box>
+                        {product.sizes &&
+                            <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
+                                <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Available Sizes </Chakra.Text>
+                                <Sizes sizes={product?.sizes} />
+                            </Chakra.Box>
+                        }
 
                         <Chakra.Box mb={5} {...frequentlyUsedStylings.categories.wrapper as any}>
                             <Chakra.Text {...frequentlyUsedStylings.categories.title as any}>Quantity </Chakra.Text>
