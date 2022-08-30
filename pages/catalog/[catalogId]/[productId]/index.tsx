@@ -33,7 +33,6 @@ interface props { product: product }
 
 import Head from "next/head"
 import { useEffect } from "react"
-import { useRouter } from "next/router"
 import * as Chakra from "@chakra-ui/react"
 import { type GetServerSideProps } from 'next'
 import { client } from "../../../../src/lib/client"
@@ -46,15 +45,7 @@ import { Image as ImageComp, Block, QuantityMeasure, Sizes, Varients } from '../
 
 const Page = (props: props) => {
 
-    const dynamicRoute = useRouter().asPath
-
     const store = _useContext();
-
-    useEffect(() => {
-        store.reducers?.product.reducer({ type: 'varientIndex', payload: 0 })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dynamicRoute])
-
 
     useEffect(() => {
         if (props.product !== null) {
@@ -62,6 +53,10 @@ const Page = (props: props) => {
             if (product.sizes) {
                 store.reducers?.product.reducer({ type: 'size', payload: product.sizes[0].name })
             }
+        }
+        return () => {
+            store.reducers?.product.reducer({ type: 'varientIndex', payload: 0 })
+            console.log(store.product)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
