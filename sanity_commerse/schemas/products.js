@@ -25,6 +25,11 @@ export default {
             type: 'number',
         },
         {
+            name: 'brand',
+            title: 'Brand',
+            type: 'string',
+        },
+        {
             name: 'briefDetail',
             title: 'Brief Detail',
             type: 'string',
